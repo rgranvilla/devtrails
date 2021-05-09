@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../components/Header';
+
 import {
   SiGithub,
   SiInstagram,
@@ -10,60 +10,94 @@ import {
 
 import {
   Container,
-  HiWapper,
   HorizontalBar,
   IconsWrapper,
   Main,
-  SocialMediaWrapper,
+  SocialContainer,
   SubTitle,
-  Wrapper,
-  BottomRightContainer
+  BottomRightContainer,
+  BottonImg,
+  TitleTextWelcome,
+  TextWelcomeContainer,
+  TextWelcome,
+  WelcomeContainer,
+  TextVerticalContainer,
+  TextVertical,
+  VerticalBarDecorator
 } from '../../styles/pages/Welcome/welcome.styles';
+
+import Header from '../../components/Header';
 
 const Welcome: React.FC = () => {
   return (
     <>
-      <Container>
+      <Container id="home">
         <Header />
+
         <Main>
-          <Wrapper>
-            <HiWapper>
-              <p>Olá, sou</p>
+          <WelcomeContainer>
+            <TextWelcomeContainer>
+              <TextWelcome>Olá, sou</TextWelcome>
               <HorizontalBar />
-            </HiWapper>
-            <h1>Ricardo Granvilla</h1>
+            </TextWelcomeContainer>
+
+            <TitleTextWelcome>Ricardo Granvilla</TitleTextWelcome>
+
             <SubTitle>Desenvolvedor</SubTitle>
             <SubTitle>Frontend</SubTitle>
-          </Wrapper>
+          </WelcomeContainer>
 
-          <SocialMediaWrapper>
+          <SocialContainer>
             <IconsWrapper>
-              <a href="">
-                <SiGithub className="socialIcon" />
+              <a
+                href="https://github.com/rgranvilla"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiGithub />
               </a>
-              <a href="">
-                <SiInstagram className="socialIcon" />
+              <a
+                href="https://www.linkedin.com/in/ricardo-granvilla-053a8121/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiLinkedin />
               </a>
-              <a href="">
-                <SiTwitter className="socialIcon" />
+              <a
+                href="https://twitter.com/rgranvilla"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiTwitter />
               </a>
-              <a href="">
-                <SiLinkedin className="socialIcon" />
+              <a
+                href="https://www.instagram.com/rgranvilla/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiInstagram />
               </a>
-              <a href="">
-                <SiYoutube className="socialIcon" />
+              <a
+                href="https://www.youtube.com/channel/UCuZDjkqxfnobmOWh3E0TdKA"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiYoutube />
               </a>
             </IconsWrapper>
-          </SocialMediaWrapper>
-          <img src="./scroll.svg" />
+          </SocialContainer>
+
+          <BottonImg src="./scroll.svg" />
+
           <BottomRightContainer>
-            <div className="textDecoratorWrapper">
-              <p>Nosso primeiro contato</p>
-              <div />
-            </div>
+            <TextVerticalContainer>
+              <TextVertical>Nosso primeiro contato</TextVertical>
+              <VerticalBarDecorator />
+            </TextVerticalContainer>
           </BottomRightContainer>
         </Main>
       </Container>
+
       <img src="./bottomTransiction.svg" />
     </>
   );

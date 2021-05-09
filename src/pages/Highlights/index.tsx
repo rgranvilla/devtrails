@@ -9,7 +9,7 @@ import {
 const Highlights: React.FC = () => {
   return (
     <>
-      <Container>
+      <Container id="highlights">
         <ContentWrapper>
           <div className="leftSide">
             <FiChevronLeft />

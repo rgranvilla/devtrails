@@ -1,9 +1,10 @@
 import React from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
+import { VerticalBar } from '../../styles/common.styles';
+
 import {
   Container,
-  VerticalBar,
   ContentContainer,
   TitleContainer,
   TitleText,
@@ -19,7 +20,7 @@ import {
 const Works: React.FC = () => {
   return (
     <>
-      <Container>
+      <Container id="works">
         <VerticalBar />
         <ContentContainer>
           <TitleContainer>

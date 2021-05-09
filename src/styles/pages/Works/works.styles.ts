@@ -9,13 +9,6 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const VerticalBar = styled.div`
-  margin-right: 1.25rem;
-  height: 22.5rem;
-  width: 0.25rem;
-  background: ${props => props.theme.colors.onyx200};
-`;
-
 export const ContentContainer = styled.div`
   max-width: 78rem;
   width: 100%;

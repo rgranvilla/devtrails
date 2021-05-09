@@ -1,18 +1,20 @@
 import React from 'react';
 import SkillPlaque from '../../components/SkillPlaque';
 
+import { VerticalBar } from '../../styles/common.styles';
+
 import {
   Container,
-  VerticalBar,
   AboutWrapper,
-  SkillWrapper
+  SkillWrapper,
+  Portrait
 } from '../../styles/pages/About/about.styles';
 
 const About: React.FC = () => {
   return (
     <>
-      <Container>
-        <img src="portrait-ricardo.svg" alt="" id="portrait" />
+      <Container id="about">
+        <Portrait src="portrait-ricardo.svg" alt="" />
         <AboutWrapper>
           <VerticalBar />
           <div className="aboutContentWrapper">

@@ -1,5 +1,8 @@
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
+
+import { VerticalBar } from '../../styles/common.styles';
+
 import {
   ContactContainer,
   ContactWrapper,
@@ -16,14 +19,13 @@ import {
   Text,
   TitleContainer,
   TitleText,
-  VerticalBar,
   VerticalBarContainer
 } from '../../styles/pages/Contact/contact.styles';
 
 const Contact: React.FC = () => {
   return (
     <>
-      <Container>
+      <Container id="contact">
         <VerticalBarContainer>
           <VerticalBar />
         </VerticalBarContainer>

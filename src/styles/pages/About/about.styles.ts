@@ -8,13 +8,13 @@ export const Container = styled.div`
   align-items: center;
 
   position: relative;
+`;
 
-  #portrait {
-    top: 4.25rem;
-    right: 0;
-    position: absolute;
-    height: 58.75rem;
-  }
+export const Portrait = styled.img`
+  top: 4.25rem;
+  right: 0;
+  position: absolute;
+  height: 58.75rem;
 `;
 
 export const AboutWrapper = styled.div`
@@ -89,13 +89,6 @@ export const AboutWrapper = styled.div`
       }
     }
   }
-`;
-
-export const VerticalBar = styled.div`
-  margin-right: 1.25rem;
-  height: 22.5rem;
-  width: 0.25rem;
-  background: ${props => props.theme.colors.onyx200};
 `;
 
 export const SkillWrapper = styled.div`

@@ -2,19 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
+  height: 80vh;
 
   display: flex;
   justify-content: center;
 `;
 
 export const VerticalBarContainer = styled.div``;
-
-export const VerticalBar = styled.div`
-  margin-right: 1.25rem;
-  height: 22.5rem;
-  width: 0.125rem;
-  background: ${props => props.theme.colors.silver};
-`;
 
 export const ContentContainer = styled.div`
   max-width: 78rem;

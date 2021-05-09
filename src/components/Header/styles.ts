@@ -16,9 +16,6 @@ export const Container = styled.header`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    .menu {
-    }
   }
 `;
 
@@ -37,10 +34,12 @@ export const Logo = styled.div`
 `;
 
 export const Menu = styled.div`
-  width: 27.5rem;
+  width: 37.5rem;
   height: 1.5rem;
   display: flex;
   justify-content: space-between;
+
+  scroll-behavior: smooth;
 
   a {
     color: ${props => props.theme.colors.davysGray};
