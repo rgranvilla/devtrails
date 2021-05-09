@@ -8,8 +8,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${props => props.theme.colors.background};
-    color: ${props => props.theme.colors.text};
+    background: ${props => props.theme.colors.gainsboro};
+    color: ${props => props.theme.colors.onyx100};
     font: 400 16px Roboto, sans-serif;
   }
 `;

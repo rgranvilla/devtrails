@@ -12,11 +12,15 @@
     "next-images": "^1.7.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "^4.2.0",
+    "sass": "^1.32.12",
+    "simple-icons": "^4.22.0",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
     "@types/node": "^15.0.2",
     "@types/react": "^17.0.5",
+    "@types/simple-icons": "^4.17.0",
     "@types/styled-components": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^4.22.1",
     "@typescript-eslint/parser": "^4.22.1",
