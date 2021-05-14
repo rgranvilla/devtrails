@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100vw;
-  height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -11,10 +10,20 @@ export const Container = styled.div`
   background: ${props => props.theme.colors.radialGradientRaisinBlack};
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentContainer = styled.div`
   max-width: 78rem;
   width: 100%;
 
+  .header {
+    padding-top: 2.5rem;
+  }
+
+  .footer {
+    padding-bottom: 2.5rem;
+  }
+`;
+
+export const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 4rem auto 4rem;
   grid-template-rows: 10rem auto 10rem;
@@ -76,6 +85,9 @@ export const ContentWrapper = styled.div`
     grid-row: 3/4;
 
     justify-self: center;
+    align-self: flex-end;
+
+    padding-bottom: 2.5rem;
 
     display: flex;
     gap: 1.25rem;

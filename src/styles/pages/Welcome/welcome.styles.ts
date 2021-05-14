@@ -16,7 +16,7 @@ export const Main = styled.div`
 
   display: grid;
   grid-template-columns: 2.5rem auto 2.5rem;
-  grid-template-rows: 30% 17.5rem auto;
+  grid-template-rows: 30% 17.5rem 70%;
 `;
 
 export const WelcomeContainer = styled.div`

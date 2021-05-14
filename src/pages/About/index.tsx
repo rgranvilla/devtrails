@@ -1,7 +1,7 @@
 import React from 'react';
 import SkillPlaque from '../../components/SkillPlaque';
 
-import { VerticalBar } from '../../styles/common.styles';
+import { Title, VerticalBar } from '../../styles/common.styles';
 
 import {
   Container,
@@ -18,8 +18,10 @@ const About: React.FC = () => {
         <AboutWrapper>
           <VerticalBar />
           <div className="aboutContentWrapper">
-            <h1>Sobre mim</h1>
-            <p>Desenvolvedor Frontend residindo em Porto Alegre-RS, Brasil.</p>
+            <Title>Sobre mim</Title>
+            <p>
+              Desenvolvedor Fullstack Web residindo em Porto Alegre-RS, Brasil.
+            </p>
             <p>
               Ingressei em outubro de 2019 no curso de ciência da computação, já
               em dezembro daquele mesmo ano comecei a estudar as linguagens Java
@@ -64,7 +66,7 @@ const About: React.FC = () => {
         <SkillWrapper>
           <VerticalBar />
           <div>
-            <h1>Habilidades</h1>
+            <Title>Habilidades</Title>
             <div className="skillBar">
               <SkillPlaque title={'HTML 5'} slug={'html5'} />
               <SkillPlaque title={'CSS 3'} slug={'css3'} />

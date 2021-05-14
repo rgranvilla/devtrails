@@ -22,16 +22,6 @@ export const ContentContainer = styled.div`
 
 export const TitleContainer = styled.div`
   padding-bottom: 2rem;
-
-  p {
-    font-family: raleway, sans-serif;
-    font-size: 1.125rem;
-    font-weight: 400;
-    font-variant-numeric: proportional-nums;
-    font-feature-settings: 'lnum';
-    padding-bottom: 1rem;
-    text-align: justify;
-  }
 `;
 
 export const TitleText = styled.h1`
@@ -56,16 +46,16 @@ export const ContactWrapper = styled.div`
   align-items: center;
 `;
 
-export const TextContainer = styled.div``;
-
-export const Text = styled.p`
-  font-family: raleway, sans-serif;
-  font-size: 1.125rem;
-  font-weight: 400;
-  font-variant-numeric: proportional-nums;
-  font-feature-settings: 'lnum';
-  padding-bottom: 1rem;
-  text-align: justify;
+export const TextContainer = styled.div`
+  p {
+    font-family: raleway, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    font-variant-numeric: proportional-nums;
+    font-feature-settings: 'lnum';
+    padding-bottom: 1rem;
+    text-align: justify;
+  }
 `;
 
 export const FormContainer = styled.div`

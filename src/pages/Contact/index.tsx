@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 
-import { VerticalBar } from '../../styles/common.styles';
+import { VerticalBar, Title } from '../../styles/common.styles';
 
 import {
   ContactContainer,
@@ -16,9 +16,7 @@ import {
   SubmitButton,
   SubmitButtonContainer,
   TextContainer,
-  Text,
   TitleContainer,
-  TitleText,
   VerticalBarContainer
 } from '../../styles/pages/Contact/contact.styles';
 
@@ -31,14 +29,12 @@ const Contact: React.FC = () => {
         </VerticalBarContainer>
         <ContentContainer>
           <TitleContainer>
-            <TitleText>Contato</TitleText>
+            <Title>Contato</Title>
           </TitleContainer>
           <ContactContainer>
             <ContactWrapper>
               <TextContainer>
-                <Text>
-                  Tem alguma pergunta ou trabalho que gostaria de fazer?
-                </Text>
+                <p>Tem alguma pergunta ou trabalho que gostaria de fazer?</p>
               </TextContainer>
               <FormContainer>
                 <InputContainer>

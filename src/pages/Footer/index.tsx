@@ -1,10 +1,10 @@
 import React from 'react';
 import {
   SiGithub,
-  SiInstagram,
+  // SiInstagram,
   SiLinkedin,
-  SiTwitter,
-  SiYoutube
+  SiTwitter
+  // SiYoutube
 } from 'react-icons/si';
 import {
   Container,
@@ -25,13 +25,13 @@ const Footer: React.FC = () => {
           >
             <SiGithub />
           </a>
-          <a
+          {/* <a
             href="https://www.instagram.com/rgranvilla/"
             target="_blank"
             rel="noreferrer"
           >
             <SiInstagram />
-          </a>
+          </a> */}
           <a
             href="https://twitter.com/rgranvilla"
             target="_blank"
@@ -39,13 +39,13 @@ const Footer: React.FC = () => {
           >
             <SiTwitter />
           </a>
-          <a
+          {/* <a
             href="https://www.youtube.com/channel/UCuZDjkqxfnobmOWh3E0TdKA"
             target="_blank"
             rel="noreferrer"
           >
             <SiYoutube />
-          </a>
+          </a> */}
           <a
             href="https://www.linkedin.com/in/ricardo-granvilla-053a8121/"
             target="_blank"

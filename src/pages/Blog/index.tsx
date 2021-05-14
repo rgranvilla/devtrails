@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { VerticalBar } from '../../styles/common.styles';
+import { HorizontalBar, Title } from '../../styles/common.styles';
 
 import {
   BlogContainer,
   BlogWarpper,
-  Container,
-  TitleContainer,
-  TitleText,
-  VerticalBarContainer
+  Container
 } from '../../styles/pages/Blog/blog.styles';
 import { ContentContainer } from '../../styles/pages/Works/works.styles';
 
@@ -16,18 +13,15 @@ const Blog: React.FC = () => {
   return (
     <>
       <Container id="blog">
-        <VerticalBarContainer>
-          <VerticalBar />
-        </VerticalBarContainer>
         <ContentContainer>
-          <TitleContainer>
-            <TitleText>Blog</TitleText>
-          </TitleContainer>
+          <Title>Blog</Title>
+          <HorizontalBar />
           <BlogContainer>
             <BlogWarpper>
               <h1>Olá eu sou o blog</h1>
             </BlogWarpper>
           </BlogContainer>
+          <HorizontalBar />
         </ContentContainer>
       </Container>
       <img src="./bottomTransiction.svg" />

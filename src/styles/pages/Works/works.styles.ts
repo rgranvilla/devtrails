@@ -31,13 +31,6 @@ export const TitleContainer = styled.div`
   }
 `;
 
-export const TitleText = styled.h1`
-  padding: 0.25rem 0 3.5rem 0;
-  font-family: Raleway, sans-serif;
-  text-transform: uppercase;
-  font-size: 3rem;
-`;
-
 export const WorksContainer = styled.div`
   max-width: 78rem;
   width: 100%;

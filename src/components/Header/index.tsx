@@ -9,7 +9,9 @@ const Header: React.FC = () => {
       <nav className="navbar">
         <Logo>
           <Link href="/">
-            <img src="./logotipo.svg" alt="Logotipo DevTrails" />
+            <a>
+              <img src="./logotipo.svg" alt="Logotipo DevTrails" />
+            </a>
           </Link>
         </Logo>
         <Menu>
@@ -19,12 +21,12 @@ const Header: React.FC = () => {
           <Link href="#highlights">
             <a>Destaques</a>
           </Link>
-          <Link href="#works">
+          {/* <Link href="#works">
             <a>Projetos</a>
           </Link>
           <Link href="#blog">
             <a>Blog</a>
-          </Link>
+          </Link> */}
           <Link href="#contact">
             <a>Contato</a>
           </Link>

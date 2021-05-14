@@ -2,10 +2,10 @@ import React from 'react';
 
 import {
   SiGithub,
-  SiInstagram,
+  // SiInstagram,
   SiTwitter,
-  SiLinkedin,
-  SiYoutube
+  SiLinkedin
+  // SiYoutube
 } from 'react-icons/si';
 
 import {
@@ -70,7 +70,7 @@ const Welcome: React.FC = () => {
               >
                 <SiTwitter />
               </a>
-              <a
+              {/* <a
                 href="https://www.instagram.com/rgranvilla/"
                 target="_blank"
                 rel="noreferrer"
@@ -83,7 +83,7 @@ const Welcome: React.FC = () => {
                 rel="noreferrer"
               >
                 <SiYoutube />
-              </a>
+              </a> */}
             </IconsWrapper>
           </SocialContainer>
 
