@@ -13,6 +13,7 @@ import {
   InputContainer,
   MessageInput,
   NameInput,
+  SubjectInput,
   SubmitButton,
   SubmitButtonContainer,
   TextContainer,
@@ -36,14 +37,19 @@ const Contact: React.FC = () => {
               <TextContainer>
                 <p>Tem alguma pergunta ou trabalho que gostaria de fazer?</p>
               </TextContainer>
-              <FormContainer>
+              <FormContainer
+                method="post"
+                action="mailto:rgranvilla@gmail.com"
+                encType="text/plain"
+              >
                 <InputContainer>
-                  <NameInput placeholder="Nome" />
-                  <EmailInput placeholder="E-mail" />
-                  <MessageInput placeholder="Sua mensagem..." />
+                  <NameInput placeholder="Nome" type="text" />
+                  <EmailInput placeholder="E-mail" type="text" />
+                  <SubjectInput placeholder="Assunto" type="text" />
+                  <MessageInput placeholder="Sua mensagem..." typeof="text" />
                 </InputContainer>
                 <SubmitButtonContainer>
-                  <SubmitButton type="submit">
+                  <SubmitButton type="submit" value="click">
                     <FiChevronRight />
                   </SubmitButton>
                 </SubmitButtonContainer>

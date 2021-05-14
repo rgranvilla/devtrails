@@ -58,7 +58,7 @@ export const TextContainer = styled.div`
   }
 `;
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   width: 60%;
 
   display: flex;
@@ -103,6 +103,16 @@ export const NameInput = styled.input`
 
   background: ${props => props.theme.colors.lightGray};
 `;
+export const SubjectInput = styled.input`
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+
+  border-radius: 0.5rem;
+  border: 0;
+
+  background: ${props => props.theme.colors.lightGray};
+`;
 
 export const EmailInput = styled.input`
   height: 2.5rem;
@@ -132,7 +142,7 @@ export const SubmitButtonContainer = styled.div`
   height: 100%;
 `;
 
-export const SubmitButton = styled.a`
+export const SubmitButton = styled.button`
   width: 100%;
   height: 100%;
 
