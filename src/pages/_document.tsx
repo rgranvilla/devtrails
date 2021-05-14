@@ -46,6 +46,8 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;900&family=Roboto&family=Roboto+Slab:wght@300&display=swap"
             rel="stylesheet"
           />
+
+          <link rel="shortcut icon" href="logo.svg" type="image/svg" />
         </Head>
         <body>
           <Main />
