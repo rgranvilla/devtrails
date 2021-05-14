@@ -55,12 +55,12 @@ const About: React.FC = () => {
               metodologias utilizadas em programação, boas práticas e tudo que
               for relevante ao nosso aprimoramento como profissionais.
             </p>
-            <button type={'button'} className="buttonCV">
+            {/* <button type={'button'} className="buttonCV">
               <a href="">
                 <p>Download Currículo</p>
                 <img src="CV-Icon.svg" alt="" />
               </a>
-            </button>
+            </button> */}
           </div>
         </AboutWrapper>
         <SkillWrapper>
