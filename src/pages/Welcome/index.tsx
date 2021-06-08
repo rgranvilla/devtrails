@@ -11,18 +11,7 @@ import {
 import {
   Container,
   HorizontalBar,
-  IconsWrapper,
   Main,
-  SocialContainer,
-  SubTitle,
-  BottomRightContainer,
-  BottonImg,
-  TitleTextWelcome,
-  TextWelcomeContainer,
-  TextWelcome,
-  WelcomeContainer,
-  TextVerticalContainer,
-  TextVertical,
   VerticalBarDecorator
 } from '../../styles/pages/Welcome/welcome.styles';
 
@@ -35,20 +24,20 @@ const Welcome: React.FC = () => {
         <Header />
 
         <Main>
-          <WelcomeContainer>
-            <TextWelcomeContainer>
-              <TextWelcome>Olá, sou</TextWelcome>
+          <div className="welcomeContainer">
+            <div className="welcomeText">
+              <p>Olá, sou</p>
               <HorizontalBar />
-            </TextWelcomeContainer>
+            </div>
 
-            <TitleTextWelcome>Ricardo Granvilla</TitleTextWelcome>
+            <h1>Ricardo Granvilla</h1>
 
-            <SubTitle>Desenvolvedor</SubTitle>
-            <SubTitle>Frontend</SubTitle>
-          </WelcomeContainer>
+            <h2>Desenvolvedor</h2>
+            <h2>Fullstack</h2>
+          </div>
 
-          <SocialContainer>
-            <IconsWrapper>
+          <div className="socialNavContainer">
+            <div className="socialWrapper">
               <a
                 href="https://github.com/rgranvilla"
                 target="_blank"
@@ -84,21 +73,23 @@ const Welcome: React.FC = () => {
               >
                 <SiYoutube />
               </a> */}
-            </IconsWrapper>
-          </SocialContainer>
+            </div>
+          </div>
 
-          <BottonImg src="./scroll.svg" />
+          <div className="scrollDecoration">
+            <img src="./scroll.svg" />
+          </div>
 
-          <BottomRightContainer>
-            <TextVerticalContainer>
-              <TextVertical>Nosso primeiro contato</TextVertical>
+          <div className="bottomRightContainer">
+            <div className="verticalTextContainer">
+              <p>Nosso primeiro contato</p>
               <VerticalBarDecorator />
-            </TextVerticalContainer>
-          </BottomRightContainer>
+            </div>
+          </div>
         </Main>
       </Container>
 
-      <img src="./bottomTransiction.svg" />
+      <img src="./bottomTransiction.svg" className="bottomTransiction" />
     </>
   );
 };
