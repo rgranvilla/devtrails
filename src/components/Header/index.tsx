@@ -1,36 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Container, Logo, Menu } from './styles';
+import { Container } from './styles';
+import Burger from './Burger';
 
 const Header: React.FC = () => {
   return (
     <Container>
       <nav className="navbar">
-        <Logo>
+        <div className="logoImage">
           <Link href="/">
             <a>
               <img src="./logotipo.svg" alt="Logotipo DevTrails" />
             </a>
           </Link>
-        </Logo>
-        <Menu>
-          <Link href="#about">
-            <a>Sobre</a>
-          </Link>
-          <Link href="#highlights">
-            <a>Destaques</a>
-          </Link>
-          {/* <Link href="#works">
-            <a>Projetos</a>
-          </Link>
-          <Link href="#blog">
-            <a>Blog</a>
-          </Link> */}
-          <Link href="#contact">
-            <a>Contato</a>
-          </Link>
-        </Menu>
+        </div>
+        <Burger />
       </nav>
     </Container>
   );

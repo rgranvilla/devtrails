@@ -11,16 +11,16 @@ export const Container = styled.div`
 `;
 
 export const Main = styled.div`
-  max-width: 1248px;
+  max-width: 86%;
   width: 100%;
+  height: (100vh - 48px);
 
   display: grid;
-  grid-template-columns: 2.5rem auto 2.5rem;
-  grid-template-rows: 30% 17.5rem 70%;
+  grid-template-columns: 48px auto 48px;
+  grid-template-rows: 30% 220px 60% 20%;
 
   .welcomeContainer {
-    max-width: 78rem;
-    width: 100%;
+    max-width: 672px;
 
     grid-row: 2/3;
     grid-column: 2/3;
@@ -38,25 +38,29 @@ export const Main = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 60%;
+      width: 100%;
 
       p {
         white-space: nowrap;
         width: max-content;
         font-size: 1.875rem;
+        font-weight: 500;
       }
     }
   }
 
   h1 {
-    font-size: 4.275rem;
+    font-size: 4rem;
     color: ${props => props.theme.colors.gainsboro};
   }
 
   h2 {
-    width: 60%;
+    &:first-of-type {
+      padding-top: 1.5rem;
+    }
+    width: 100%;
     text-align: end;
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: ${props => props.theme.colors.jasmine};
   }
 
@@ -67,6 +71,7 @@ export const Main = styled.div`
     .socialWrapper {
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 1.25rem;
 
       a {
@@ -88,15 +93,18 @@ export const Main = styled.div`
   }
 
   .scrollDecoration {
-    grid-row: 3/4;
+    grid-row: 4/5;
     grid-column: 2/3;
 
     justify-self: center;
     align-self: flex-end;
 
-    transform: translateY(70%);
-
     height: fit-content;
+
+    img {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
   }
 
   .bottomRightContainer {
@@ -125,41 +133,60 @@ export const Main = styled.div`
     }
   }
 
-  @media (max-width: 480px) {
-    max-width: 480px;
-    height: calc(100vh - 72px);
+  @media (min-width: 1440px) {
+    max-width: 1248px;
+  }
 
-    display: grid;
-    grid-template-columns: 56px auto 56px;
-    grid-template-rows: 20% 160px 40% 10%;
-
+  @media (max-width: 880px) {
     .welcomeContainer {
+      max-width: 500px;
+
       .welcomeText {
-        width: 100%;
         p {
-          font-weight: 600;
-          font-size: 1.125rem;
+          font-size: 1.5rem;
         }
       }
     }
-
     h1 {
+      font-size: 3rem;
+    }
+    h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 690px) {
+    .welcomeContainer {
+      .welcomeText {
+        p {
+          font-weight: 600;
+          font-size: 1.25rem;
+        }
+      }
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
       font-size: 1.5rem;
-      padding-top: 1.5rem;
+    }
+  }
+
+  @media (max-width: 585px) {
+    grid-template-rows: 30% 160px 60% 20%;
+
+    .welcomeContainer {
+      max-width: 333px;
     }
 
+    h1 {
+      font-size: 1.875rem;
+    }
     h2 {
-      width: 100%;
-      font-size: 1rem;
-
-      &:first-of-type {
-        padding-top: 2rem;
-      }
+      font-size: 1.25rem;
     }
 
     .socialNavContainer {
-      justify-self: right;
-
       .socialWrapper {
         gap: 1rem;
 
@@ -171,22 +198,58 @@ export const Main = styled.div`
         }
       }
     }
+    .verticalTextContainer {
+      p {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    grid-template-rows: 30% 120px 70% 20%;
+
+    .welcomeContainer {
+      max-width: 208px;
+
+      .welcomeText {
+        p {
+          font-size: 0.75rem;
+        }
+      }
+    }
+
+    h1 {
+      font-size: 1.0625rem;
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 0.75rem;
+    }
+
+    .socialNavContainer {
+      .socialWrapper {
+        gap: 1rem;
+
+        a {
+          svg {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
+      }
+    }
 
     .scrollDecoration {
-      grid-row: 4/5;
-      grid-column: 2/3;
-
-      transform: translateY(0);
       img {
-        width: 3rem;
         height: 3rem;
+        width: 3rem;
       }
     }
 
     .verticalTextContainer {
       p {
-        font-size: 0.9rem;
-        line-height: 1rem;
+        font-size: 0.75rem;
       }
     }
   }
