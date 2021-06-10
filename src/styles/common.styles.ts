@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  width: 100vw;
+
+  .transictionDecorator {
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+  }
+`;
+
 export const VerticalBar = styled.div`
-  margin-right: 1.25rem;
   height: 15rem;
   width: 0.125rem;
   background: ${props => props.theme.colors.davysGray};

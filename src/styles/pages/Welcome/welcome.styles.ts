@@ -1,23 +1,22 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  height: 100vh;
+export const WelcomeContainer = styled.div`
+  height: 100%;
+  width: 100%;
 
   background: ${props => props.theme.colors.radialGradientRaisinBlack};
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export const Main = styled.div`
-  max-width: 86%;
-  width: 100%;
-  height: (100vh - 48px);
+  width: 86%;
+  max-width: 1248px;
+  margin: 0 auto;
+
+  height: 100vh;
 
   display: grid;
   grid-template-columns: 48px auto 48px;
-  grid-template-rows: 30% 220px 60% 20%;
+  grid-template-rows: 25% 25% 35% 10%;
 
   .welcomeContainer {
     max-width: 672px;
@@ -35,16 +34,16 @@ export const Main = styled.div`
     align-items: center;
 
     .welcomeText {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 100%;
 
       p {
-        white-space: nowrap;
         width: max-content;
         font-size: 1.875rem;
         font-weight: 500;
+        white-space: nowrap;
       }
     }
   }
@@ -173,8 +172,6 @@ export const Main = styled.div`
   }
 
   @media (max-width: 585px) {
-    grid-template-rows: 30% 160px 60% 20%;
-
     .welcomeContainer {
       max-width: 333px;
     }
@@ -206,8 +203,6 @@ export const Main = styled.div`
   }
 
   @media (max-width: 480px) {
-    grid-template-rows: 30% 120px 70% 20%;
-
     .welcomeContainer {
       max-width: 208px;
 

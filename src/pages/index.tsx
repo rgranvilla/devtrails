@@ -14,6 +14,8 @@ import Footer from './Footer';
 
 import { Container } from '../styles/home.styles';
 
+import Header from '../components/Header';
+
 type Work = {
   id: number;
   title: string;
@@ -34,6 +36,7 @@ const Home: React.FC<HomeProps> = ({ works }: HomeProps) => {
       <Head>
         <title>DevTrails - Ricardo</title>
       </Head>
+      <Header />
       <Welcome />
       <About />
       <Carousel works={{ ...works }} lenghtData={works.length} />

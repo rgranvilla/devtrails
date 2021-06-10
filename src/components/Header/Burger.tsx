@@ -10,11 +10,15 @@ const Burger: React.FC = () => {
   return (
     <>
       <StyledBurger open={isOpen} onClick={handleSwitch}>
-        <div />
-        <div />
-        <div />
+        <div className="burgerContainer">
+          <div />
+          <div />
+          <div />
+        </div>
       </StyledBurger>
-      <RightNav />
+      <div className="menuContent">
+        <RightNav />
+      </div>
     </>
   );
 };

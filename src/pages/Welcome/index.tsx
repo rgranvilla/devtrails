@@ -8,21 +8,19 @@ import {
   // SiYoutube
 } from 'react-icons/si';
 
+import { Container } from '../../styles/common.styles';
+
 import {
-  Container,
-  HorizontalBar,
+  WelcomeContainer,
   Main,
+  HorizontalBar,
   VerticalBarDecorator
 } from '../../styles/pages/Welcome/welcome.styles';
 
-import Header from '../../components/Header';
-
 const Welcome: React.FC = () => {
   return (
-    <>
-      <Container id="home">
-        <Header />
-
+    <Container>
+      <WelcomeContainer id="home">
         <Main>
           <div className="welcomeContainer">
             <div className="welcomeText">
@@ -87,10 +85,9 @@ const Welcome: React.FC = () => {
             </div>
           </div>
         </Main>
-      </Container>
-
-      <img src="./bottomTransiction.svg" className="bottomTransiction" />
-    </>
+      </WelcomeContainer>
+      <img src="./bottomTransiction.svg" className="transictionDecorator" />
+    </Container>
   );
 };
 
