@@ -1,64 +1,64 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+export const HighlightContainer = styled.div`
+  width: 100%;
+  height: calc(100vh);
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   background: ${props => props.theme.colors.radialGradientRaisinBlack};
-`;
 
-export const CarouselContent = styled.div`
-  display: flex;
-  justify-content: space-between;
+  .carouselContent {
+    width: 86%;
+    max-width: 1248px;
 
-  .leftSide {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 
-    svg {
-      height: 3rem;
-      width: 3rem;
+    .leftSide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      color: ${props => props.theme.colors.davysGray};
+      svg {
+        height: 3rem;
+        width: 3rem;
+
+        color: ${props => props.theme.colors.davysGray};
+      }
+
+      svg:hover {
+        color: ${props => props.theme.colors.ecru};
+      }
     }
 
-    svg:hover {
-      color: ${props => props.theme.colors.ecru};
-    }
-  }
-
-  .center {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-  }
-
-  .rightSide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    svg {
-      height: 3rem;
-      width: 3rem;
-
-      color: ${props => props.theme.colors.davysGray};
+    .center {
+      width: 100%;
+      margin: 0 auto;
     }
 
-    svg:hover {
-      color: ${props => props.theme.colors.ecru};
+    .rightSide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        height: 3rem;
+        width: 3rem;
+
+        color: ${props => props.theme.colors.davysGray};
+      }
+
+      svg:hover {
+        color: ${props => props.theme.colors.ecru};
+      }
     }
   }
 `;
 
 export const Selectors = styled.div`
-  padding-top: 1rem;
-
   display: flex;
   justify-content: center;
   align-items: center;

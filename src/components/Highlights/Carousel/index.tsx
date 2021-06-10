@@ -3,7 +3,8 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import CarouselItem from '../CarouselItem/CarouselItem';
 
-import { Container, CarouselContent, Selectors } from './styles';
+import { Container } from '../../../styles/common.styles';
+import { HighlightContainer, Selectors } from './styles';
 
 type Work = {
   id: number;
@@ -38,9 +39,9 @@ const Carousel: React.FC<WorksProps> = ({ works, lenghtData }: WorksProps) => {
     setSelectedWork(hasPrev ? selectedWork - 1 : lenghtData);
   }
   return (
-    <>
-      <Container id="highlights">
-        <CarouselContent>
+    <Container>
+      <HighlightContainer>
+        <section className="carouselContent">
           <div className="leftSide">
             <a onClick={() => handlePrev()}>
               <FiChevronLeft />
@@ -68,7 +69,7 @@ const Carousel: React.FC<WorksProps> = ({ works, lenghtData }: WorksProps) => {
               <FiChevronRight />
             </a>
           </div>
-        </CarouselContent>
+        </section>
         <Selectors>
           <div className="SelectorsContainer">
             {Object.values(works).map(({ id }) => {
@@ -91,9 +92,13 @@ const Carousel: React.FC<WorksProps> = ({ works, lenghtData }: WorksProps) => {
             })}
           </div>
         </Selectors>
-      </Container>
-      <img src="./bottomTransiction.svg" />
-    </>
+      </HighlightContainer>
+      <img
+        src="./bottomTransiction.svg"
+        className="transictionDecoratorBottom"
+        id="contact"
+      />
+    </Container>
   );
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 
-import { VerticalBar, Title } from '../../styles/common.styles';
+import { VerticalBar, Title, Container } from '../../styles/common.styles';
 
 import {
   ContactContainer,
   ContactWrapper,
-  Container,
+  ContactContentContainer,
   ContentContainer,
   EmailInput,
   FormContainer,
@@ -23,8 +23,8 @@ import {
 
 const Contact: React.FC = () => {
   return (
-    <>
-      <Container id="contact">
+    <Container>
+      <ContactContentContainer>
         <VerticalBarContainer>
           <VerticalBar />
         </VerticalBarContainer>
@@ -57,9 +57,13 @@ const Contact: React.FC = () => {
             </ContactWrapper>
           </ContactContainer>
         </ContentContainer>
-      </Container>
-      <img src="./topTransiction.svg" alt="" />
-    </>
+      </ContactContentContainer>
+      <img
+        src="./topTransiction.svg"
+        alt=""
+        className="transictionDecoratorTop"
+      />
+    </Container>
   );
 };
 

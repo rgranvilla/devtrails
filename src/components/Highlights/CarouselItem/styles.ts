@@ -1,110 +1,129 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
-
 export const ContentContainer = styled.div`
-  .disabled {
-    display: none;
-  }
-`;
+  width: 100%;
 
-export const CarouselContent = styled.div`
-  width: 64rem;
+  .main {
+    width: 100%;
+    max-width: 1248px;
 
-  min-height: 90vh;
-  height: 100%;
+    display: flex;
+    justify-content: center;
 
-  display: grid;
-  grid-row: 4rem 33.75rem auto;
-
-  .title {
-    white-space: nowrap;
-    grid-row: 1/2;
-
-    h1 {
-      font-size: 4rem;
-      font-family: RobotoSlab;
-      font-weight: 500;
-      font-variant-caps: all-small-caps;
-
-      text-align: center;
-
-      color: ${props => props.theme.colors.ecru};
+    .disabled {
+      display: none;
     }
 
-    h2 {
-      font-size: 2rem;
-      font-family: Raleway;
-      font-weight: 200;
-      /* font-variant: small-caps; */
+    .carouselContent {
+      width: 100%;
+      height: calc(100vh - 128px);
 
-      text-align: center;
+      display: grid;
+      grid-row: 1fr 1fr 1fr;
 
-      color: ${props => props.theme.colors.ecru};
-    }
-  }
+      .title {
+        padding-top: 1rem;
+        white-space: nowrap;
+        grid-row: 1/2;
 
-  .center {
-    grid-row: 2/3;
+        h1 {
+          font-size: 3rem;
+          font-family: Raleway;
+          font-weight: 500;
+          font-variant-caps: all-small-caps;
 
-    img {
-      justify-self: center;
-      height: 33.75rem;
-      max-width: 40rem;
+          text-align: center;
 
-      object-fit: contain;
-    }
-  }
+          color: ${props => props.theme.colors.ecru};
+        }
 
-  .aboutWork {
-    padding-top: 2rem;
-    grid-row: 3/4;
+        h2 {
+          font-size: 1.5rem;
+          font-family: Raleway;
+          font-weight: 200;
+          font-variant-caps: all-small-caps;
 
-    justify-self: center;
+          text-align: center;
 
-    .description {
-      height: 6rem;
-      max-width: 40rem;
-      text-align: center;
-
-      p {
-        font-family: Raleway, sans-serif;
-        font-size: 1.125rem;
-        font-weight: 200;
-        font-variant-numeric: proportional-nums;
-        font-feature-settings: 'lnum';
-        padding-bottom: 1rem;
-        text-align: justify;
+          color: ${props => props.theme.colors.ecru};
+        }
       }
-    }
 
-    div {
-      margin-top: 0.5rem;
+      .center {
+        grid-row: 2/3;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      .link {
-        width: 7.5rem;
-        height: 2rem;
+        .imageContainer {
+          height: 70vh;
+          max-height: 480px;
+          width: 70vw;
+          max-width: 640px;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            height: 100%;
+            width: 100%;
+
+            object-fit: contain;
+          }
+        }
+      }
+
+      .aboutWork {
+        grid-row: 3/4;
 
         justify-self: center;
 
-        border-radius: 0.25rem;
+        .description {
+          height: 64px;
+          max-width: 640px;
+          text-align: center;
 
-        background: ${props => props.theme.colors.onyx100};
-
-        a {
-          font-size: 1.125rem;
-          font-weight: 600;
-          color: ${props => props.theme.colors.silver};
-          text-decoration: none;
-          cursor: pointer;
+          p {
+            font-family: Raleway, sans-serif;
+            font-size: 1.125rem;
+            font-weight: 300;
+            font-variant-numeric: proportional-nums;
+            font-feature-settings: 'lnum';
+            padding-bottom: 1rem;
+            text-align: justify;
+            color: ${props => props.theme.colors.white};
+          }
         }
 
-        &:hover {
-          transform: translate(0, -0.0625rem);
+        .linkContainer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .link {
+            width: 7.5rem;
+            height: 2rem;
+            border-radius: 0.25rem;
+
+            background: ${props => props.theme.colors.onyx100};
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+              display: block;
+              font-size: 1rem;
+              font-weight: 600;
+              color: ${props => props.theme.colors.silver};
+            }
+
+            &:hover {
+              transform: translate(0, -0.0625rem);
+            }
+          }
         }
       }
     }

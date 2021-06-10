@@ -1,4 +1,4 @@
-import { CarouselContent, Container, ContentContainer } from './styles';
+import { ContentContainer } from './styles';
 
 type Work = {
   title: string;
@@ -18,22 +18,24 @@ const CarouselItem: React.FC<Work> = ({
   isSelected
 }: Work) => {
   return (
-    <Container>
-      <ContentContainer>
+    <ContentContainer>
+      <section className="main">
         <div className={isSelected ? '' : 'disabled'}>
-          <CarouselContent>
+          <main className="carouselContent">
             <div className="title">
               <h1 className="title">{title}</h1>
               <h2 className="subtitle">{subtitle}</h2>
             </div>
             <div className="center">
-              <img src={thumbnail} alt="" />
+              <div className="imageContainer">
+                <img src={thumbnail} alt="" />
+              </div>
             </div>
             <div className="aboutWork">
               <div className="description">
                 <p>{description}</p>
               </div>
-              <div>
+              <div className="linkContainer">
                 <div className="link">
                   <a href={link} target="_blank" rel="noreferrer">
                     Acessar Site
@@ -41,10 +43,10 @@ const CarouselItem: React.FC<Work> = ({
                 </div>
               </div>
             </div>
-          </CarouselContent>
+          </main>
         </div>
-      </ContentContainer>
-    </Container>
+      </section>
+    </ContentContainer>
   );
 };
 

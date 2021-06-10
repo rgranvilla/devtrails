@@ -121,7 +121,12 @@ const About: React.FC = () => {
           </section>
         </AboutContent>
       </AboutContainer>
-      <img src="./topTransiction.svg" alt="" className="transictionDecorator" />
+      <img
+        src="./topTransiction.svg"
+        alt=""
+        className="transictionDecoratorTop"
+        id="highlights"
+      />
     </Container>
   );
 };

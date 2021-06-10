@@ -3,7 +3,13 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100vw;
 
-  .transictionDecorator {
+  .transictionDecoratorTop {
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+    transform: translateY(5px);
+  }
+  .transictionDecoratorBottom {
     width: 100%;
     height: fit-content;
     object-fit: cover;

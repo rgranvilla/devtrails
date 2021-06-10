@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ContactContentContainer = styled.div`
   width: 100vw;
-  height: 80vh;
+  height: 75vh;
+
+  padding-top: 2rem;
 
   display: flex;
   justify-content: center;

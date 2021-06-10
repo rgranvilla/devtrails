@@ -86,7 +86,11 @@ const Welcome: React.FC = () => {
           </div>
         </Main>
       </WelcomeContainer>
-      <img src="./bottomTransiction.svg" className="transictionDecorator" />
+      <img
+        src="./bottomTransiction.svg"
+        className="transictionDecoratorBottom"
+        id="about"
+      />
     </Container>
   );
 };
