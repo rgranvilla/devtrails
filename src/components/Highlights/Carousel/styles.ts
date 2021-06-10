@@ -58,6 +58,7 @@ export const Selectors = styled.div`
   align-items: center;
 
   .SelectorsContainer {
+    padding-top: 1rem;
     display: flex;
     justify-content: center;
     gap: 1.25rem;

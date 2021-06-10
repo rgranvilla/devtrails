@@ -51,17 +51,14 @@ const About: React.FC = () => {
                   component, webpack, docker, scrum e muito mais.
                 </p>
                 <p>
-                  A idéia de construir este portfólio, além de ser uma vitrine
-                  de quem sou como programador, é demonstrar o conhecimento que
-                  adquiri ao longo dessa jornada. Além de expor os trabalhos que
-                  já desenvolvi, ele servirá para apresentar conteúdos para
-                  auxiliar os estudos de outras pessoas que possam se interessar
-                  por este caminho, através de um blog com dicas de como você
-                  pode iniciar sua jornada, das mais atuais ferramentas do
-                  mercado, técnicas e metodologias utilizadas em programação,
-                  boas práticas e tudo que for relevante ao nosso aprimoramento
-                  como profissionais.
+                  Além de expor os trabalhos que já desenvolvi, aqui você também
+                  terá acesso a conteúdos para auxiliá-lo nos seus estudos,
+                  partindo de como você pode iniciar sua jornada, com dicas de
+                  cursos gratuitos e do uso de diversas ferramentas e
+                  bibliotecas relevantes no mercado, discussões sobre as boas
+                  práticas da programação e seu uso no dia a dia.
                 </p>
+                <p>Seja muito bem vindo!</p>
                 {/* <button type={'button'} className="buttonCV">
                   <a href="">
                     <p>Download Currículo</p>
