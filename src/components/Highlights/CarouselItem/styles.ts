@@ -47,6 +47,16 @@ export const ContentContainer = styled.div`
 
           color: ${props => props.theme.colors.ecru};
         }
+
+        @media (max-width: 640px) {
+          max-width: 240px;
+          h1 {
+            font-size: 2.5rem;
+          }
+          h2 {
+            font-size: 1.25rem;
+          }
+        }
       }
 
       .center {
@@ -66,6 +76,11 @@ export const ContentContainer = styled.div`
           justify-content: center;
           align-items: center;
 
+          @media (max-width: 640px) {
+            height: 40vh;
+            max-height: 340px;
+            max-width: 240px;
+          }
           img {
             height: 100%;
             width: 100%;
@@ -95,6 +110,12 @@ export const ContentContainer = styled.div`
             text-align: justify;
             color: ${props => props.theme.colors.white};
           }
+          @media (max-width: 640px) {
+            max-width: 240px;
+            p {
+              font-size: 0.875rem;
+            }
+          }
         }
 
         .linkContainer {
@@ -122,6 +143,16 @@ export const ContentContainer = styled.div`
 
             &:hover {
               transform: translate(0, -0.0625rem);
+            }
+          }
+          @media (max-width: 640px) {
+            padding-top: 1rem;
+            .link {
+              width: 6rem;
+              height: 1.75rem;
+              a {
+                font-size: 0.875rem;
+              }
             }
           }
         }

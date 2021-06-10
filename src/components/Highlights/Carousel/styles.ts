@@ -17,7 +17,8 @@ export const HighlightContainer = styled.div`
     display: flex;
     justify-content: space-between;
 
-    .leftSide {
+    .leftSide,
+    .rightSide {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -39,20 +40,13 @@ export const HighlightContainer = styled.div`
       margin: 0 auto;
     }
 
-    .rightSide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      svg {
-        height: 3rem;
-        width: 3rem;
-
-        color: ${props => props.theme.colors.davysGray};
-      }
-
-      svg:hover {
-        color: ${props => props.theme.colors.ecru};
+    @media (max-width: 640px) {
+      .leftSide,
+      .rightSide {
+        svg {
+          height: 2.5rem;
+          width: 2.5rem;
+        }
       }
     }
   }
