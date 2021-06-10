@@ -236,6 +236,7 @@ export const Main = styled.div`
     }
 
     .scrollDecoration {
+      transform: translateY(-1rem);
       img {
         height: 3rem;
         width: 3rem;
