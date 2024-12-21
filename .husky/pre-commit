@@ -4,6 +4,20 @@
 echo '🏗️👷 Styling your project before committing👷‍♂️🏗️'
 echo 'please be patient, this may take a while...'
 
+# Gera o changeset antes de abrir o editor de commit
+echo '📝 Generating changeset...'
+
+npx changeset add || {
+  echo '❌ Failed to generate changeset. Aborting commit.';
+  exit 1;
+}
+
+# Adiciona os arquivos gerados ao stage para serem incluídos no commit
+git add .changeset/*
+
+echo '✅ Changeset generated and staged.'
+
+
 # Check ESLint Standards
 npx lint-staged ||
 (
