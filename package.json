@@ -8,7 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky",
     "commit": "git-cz",
-    "co": "pnpm changeset && git add . && git-cz",
+    "co": "git add . && git-cz",
     "lint-staged": "lint-staged",
     "changeset": "changeset",
     "vp": "changeset version",
