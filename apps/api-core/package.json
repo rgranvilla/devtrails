@@ -6,7 +6,8 @@
     "dev": "pnpm env:load tsx watch src/http/server.ts",
     "db:migrate": "pnpm env:load prisma migrate dev",
     "db:studio": "pnpm env:load prisma studio",
-    "env:load": "dotenv -e ../../.env --"
+    "env:load": "dotenv -e ../../.env --",
+    "lint": "npx eslint"
   },
   "dependencies": {
     "@devtrails/auth": "workspace:*",
@@ -28,9 +29,6 @@
     "@devtrails/eslint-config": "workspace:*",
     "@devtrails/prettier": "workspace:*",
     "@devtrails/tsconfig": "workspace:*"
-  },
-  "eslintConfig": {
-    "extends": "@devtrails/eslint-config/node"
   },
   "prettier": "@devtrails/prettier"
 }
