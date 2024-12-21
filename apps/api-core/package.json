@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "description": "Core API for DevTrails",
   "scripts": {
-    "dev": "pnpm env:load tsx watch src/http/server.ts",
+    "dev": "pnpm env:load tsx watch src/infra/http/server.ts",
     "db:migrate": "pnpm env:load prisma migrate dev",
     "db:studio": "pnpm env:load prisma studio",
     "db:seed": "pnpm env:load prisma db seed",
     "env:load": "dotenv -e ../../.env --",
-    "lint": "npx eslint --fix"
+    "lint": "npx eslint --fix src/**/*.{ts,tsx}"
   },
   "dependencies": {
     "@devtrails/auth": "workspace:*",
