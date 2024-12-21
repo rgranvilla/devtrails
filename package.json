@@ -9,7 +9,10 @@
     "prepare": "husky",
     "commit": "git-cz",
     "co": "git add . && git-cz",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "changeset": "changeset",
+    "vp": "changeset version",
+    "publish-packages": "turbo run build lint test && changeset version && changeset publish"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
@@ -24,5 +27,8 @@
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.27.11"
   }
 }
