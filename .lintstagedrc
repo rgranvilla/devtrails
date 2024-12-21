@@ -1,7 +1,8 @@
 {
   "*.{js,jsx,ts,tsx}": [
     "npx eslint --fix",
-    "prettier --write \"**/*.{ts,tsx}\""
+    "prettier --write \"**/*.{ts,tsx}\"",
+    "pnpm changeset"
   ],
   "*.{md,mdx,mjs,yml,yaml,css}": [
     "prettier --write"
