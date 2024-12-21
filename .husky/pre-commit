@@ -12,4 +12,11 @@ npx lint-staged ||
     false;
 )
 
-echo '🎉 No error found: committing this now.... ✨🚀🏄‍♂️🍻'
+# Generate changeset
+echo '📝 Generating changeset...'
+npx changeset add || exit 1
+
+# Add changeset to the commit
+git add .changeset/*
+
+echo '🎉 No error found: committing this now....✨🚀󰝖🍻'
