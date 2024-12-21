@@ -1,0 +1,7 @@
+{
+  "extends": "@devtrails/tsconfig/library.json",
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["index.ts"]
+}

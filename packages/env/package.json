@@ -1,0 +1,23 @@
+{
+  "name": "@devtrails/env",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "devDependencies": {
+    "@devtrails/eslint-config": "workspace:*",
+    "@devtrails/prettier": "workspace:*",
+    "@devtrails/tsconfig": "workspace:*",
+    "@types/node": "^22.5.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@devtrails/eslint-config/library"
+    ]
+  },
+  "prettier": "@devtrails/prettier",
+  "dependencies": {
+    "@t3-oss/env-nextjs": "^0.11.1",
+    "zod": "^3.23.8"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@devtrails/tsconfig",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "files": [
+    "library.json",
+    "next.json",
+    "node.json"
+  ]
+}

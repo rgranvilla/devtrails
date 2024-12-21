@@ -1,0 +1,36 @@
+{
+  "name": "@devtrails/api-core",
+  "version": "1.0.0",
+  "description": "Core API for DevTrails",
+  "scripts": {
+    "dev": "pnpm env:load tsx watch src/http/server.ts",
+    "db:migrate": "pnpm env:load prisma migrate dev",
+    "db:studio": "pnpm env:load prisma studio",
+    "env:load": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@devtrails/auth": "workspace:*",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/jwt": "^9.0.2",
+    "@fastify/swagger": "^9.4.0",
+    "@fastify/swagger-ui": "^5.2.0",
+    "@types/node": "^22.5.1",
+    "dotenv-cli": "^8.0.0",
+    "fastify": "^5.2.0",
+    "fastify-multer": "^2.0.3",
+    "fastify-type-provider-zod": "^4.0.2",
+    "prisma": "^6.1.0",
+    "tsx": "^4.19.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@devtrails/env": "workspace:*",
+    "@devtrails/eslint-config": "workspace:*",
+    "@devtrails/prettier": "workspace:*",
+    "@devtrails/tsconfig": "workspace:*"
+  },
+  "eslintConfig": {
+    "extends": "@devtrails/eslint-config/node"
+  },
+  "prettier": "@devtrails/prettier"
+}
