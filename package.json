@@ -6,7 +6,9 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commit": "cz",
+    "co": "git add . && cz"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
