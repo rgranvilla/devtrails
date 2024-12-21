@@ -12,7 +12,7 @@ import {
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
-import { errorHandler } from './error-handler'
+import { errorHandler } from './error-handler';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
