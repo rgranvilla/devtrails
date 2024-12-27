@@ -1,0 +1,7 @@
+{
+  "name": "vitest-environment-prisma-users",
+  "version": "1.0.0",
+  "main": "prisma-test-environment.ts",
+  "license": "MIT",
+  "type": "module"
+}

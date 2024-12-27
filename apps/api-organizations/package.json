@@ -1,11 +1,11 @@
 {
-  "name": "@devtrails/api-core",
+  "name": "@devtrails/api-organizations",
   "version": "0.0.1",
-  "description": "API Core for DevTrails",
+  "description": "API Organizations for DevTrails",
   "scripts": {
     "dev": "pnpm env:load tsx watch src/infra/http/server.ts",
     "db:migrate": "pnpm env:load prisma migrate dev",
-    "db:studio": "pnpm env:load prisma studio --port 5555",
+    "db:studio": "pnpm env:load prisma studio --port 5557",
     "db:seed": "pnpm env:load prisma db seed",
     "env:load": "dotenv -e ../../.env --",
     "lint": "npx eslint --fix src/**/*.{ts,tsx}"

@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_CORE")
 }
 
 enum TokenType {
@@ -17,109 +17,16 @@ enum Provider {
   GOOGLE
   FACEBOOK
   GITHUB
-}
-
-enum Role {
-  ADMIN
-  MEMBER
-  BILLING
-}
-
-model User {
-  id           String    @id @default(uuid())
-  username     String    @unique
-  firstName    String    @map("first_name")
-  lastName     String    @map("last_name")
-  email        String    @unique
-  password     String
-  avatarUrl    String?   @map("avatar_url")
-  isSuperAdmin Boolean   @default(false) @map("is_super_admin")
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
-  deletedAt    DateTime? @map("deleted_at")
-
-  sessions          Session[]
-  accounts          Account[]
-  invites           Invite[]
-  member_on         Member[]
-  own_organizations Organization[]
-
-  @@index([username, firstName, lastName, email])
-  @@map("users")
+  CREDENTIALS
 }
 
 model Session {
   id        String    @id @default(uuid())
+  userId    String    @map("user_id")
   type      TokenType
+  provider  Provider
   expires   DateTime
   createdAt DateTime  @default(now()) @map("created_at")
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @map("user_id")
 
   @@map("sessions")
-}
-
-model Account {
-  id                String   @id @default(uuid())
-  provider          Provider
-  providerAccountId String   @map("provider_account_id")
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String @map("user_id")
-
-  @@unique([provider, userId])
-  @@map("accounts")
-}
-
-model Organization {
-  id        String    @id @default(uuid())
-  name      String
-  slug      String
-  domain    String
-  logoUrl   String    @map("logo_url")
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
-  deletedAt DateTime? @map("deleted_at")
-
-  owner   User     @relation(fields: [ownerId], references: [id])
-  ownerId String   @map("owner_id")
-  members Member[]
-  invites Invite[]
-
-  @@unique([name, slug, domain])
-  @@index([name, slug, domain])
-  @@map("organizations")
-}
-
-model Member {
-  id        String   @id @default(uuid())
-  role      Role     @default(MEMBER)
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
-
-  user           User         @relation(fields: [userId], references: [id])
-  userId         String       @map("user_id")
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  organizationId String       @map("organization_id")
-
-  @@unique([userId, organizationId])
-  @@map("members")
-}
-
-model Invite {
-  id        String   @id @default(uuid())
-  email     String
-  role      Role
-  expires   DateTime
-  createdAt DateTime @default(now()) @map("created_at")
-
-  author         User         @relation(fields: [authorId], references: [id])
-  authorId       String       @map("author_id")
-  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  organizationId String       @map("organization_id")
-
-  @@unique([email, organizationId])
-  @@index([email])
-  @@map("invites")
 }

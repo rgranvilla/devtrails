@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL_USERS")
+}
+
+model User {
+  id           String    @id @default(uuid())
+  username     String    @unique
+  firstName    String    @map("first_name")
+  lastName     String    @map("last_name")
+  email        String    @unique
+  password     String
+  avatarUrl    String?   @map("avatar_url")
+  isSuperAdmin Boolean   @default(false) @map("is_super_admin")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt    DateTime? @map("deleted_at")
+
+  membership        Membership[]
+  own_organizations OrganizationOwner[]
+
+  @@index([username, firstName, lastName, email])
+  @@map("users")
+}
+
+model Membership {
+  id             String    @id @default(uuid())
+  userId         String    @map("user_id")
+  organizationId String    @map("organization_id")
+  joinedAt       DateTime  @default(now()) @map("joined_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, organizationId])
+  @@map("memberships")
+}
+
+model OrganizationOwner {
+  id             String   @id @default(uuid())
+  userId         String   @map("user_id")
+  organizationId String   @map("organization_id")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @default(now()) @map("updated_at")
+  deletedAt      DateTime @map("deleted_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("organization_owners")
+}

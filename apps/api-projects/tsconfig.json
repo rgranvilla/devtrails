@@ -1,0 +1,12 @@
+{
+  "extends": "@devtrails/tsconfig/node.json",
+  "include": ["src/**/*", "@types/**/*", "prisma/**/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "lib": ["ES2022"],
+    "forceConsistentCasingInFileNames": true
+  }
+}

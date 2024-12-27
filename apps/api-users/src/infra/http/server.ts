@@ -4,12 +4,14 @@ import { app } from './app'
 
 app
   .listen({
-    port: env.SERVER_PORT_CORE,
+    port: env.SERVER_PORT_USERS,
   })
   .then(() => {
-    console.log(`Server is running on http://localhost:${env.SERVER_PORT_CORE}`)
     console.log(
-      `Swagger is running on http://localhost:${env.SERVER_PORT_CORE}/docs`,
+      `Server is running on http://localhost:${env.SERVER_PORT_USERS}`,
+    )
+    console.log(
+      `Swagger is running on http://localhost:${env.SERVER_PORT_USERS}/docs`,
     )
   })
   .catch((error: unknown) => {
