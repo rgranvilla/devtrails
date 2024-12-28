@@ -3,14 +3,16 @@ import { z } from 'zod'
 
 export const env = createEnv({
   server: {
-    DATABASE_URL_CORE: z.string().url(),
     SERVER_PORT_CORE: z.coerce.number().default(5000),
-    DATABASE_URL_USERS: z.string().url(),
     SERVER_PORT_USERS: z.coerce.number().default(5001),
-    DATABASE_URL_ORGANIZATIONS: z.string().url(),
     SERVER_PORT_ORGANIZATIONS: z.coerce.number().default(5002),
-    DATABASE_URL_PROJECTS: z.string().url(),
     SERVER_PORT_PROJECTS: z.coerce.number().default(5001),
+    DATABASE_URL_CORE: z.string().url(),
+    DATABASE_URL_USERS: z.string().url(),
+    DATABASE_URL_ORGANIZATIONS: z.string().url(),
+    DATABASE_URL_PROJECTS: z.string().url(),
+
+    SALT_ROUNDS: z.coerce.number().default(8),
 
     JWT_SECRET: z.string(),
 
@@ -33,8 +35,9 @@ export const env = createEnv({
     SERVER_PORT_PROJECTS: process.env.SERVER_PORT_PROJECTS,
     DATABASE_URL_CORE: process.env.DATABASE_URL_CORE,
     DATABASE_URL_USERS: process.env.DATABASE_URL_USERS,
-    DATABASE_URL_ORGANIZATIONS: process.env.ORGANIZATIONS,
-    DATABASE_URL_PROJECTS: process.env.PROJECTS,
+    DATABASE_URL_ORGANIZATIONS: process.env.DATABASE_URL_ORGANIZATIONS,
+    DATABASE_URL_PROJECTS: process.env.DATABASE_URL_PROJECTS,
+    SALT_ROUNDS: process.env.SALT_ROUNDS,
     JWT_SECRET: process.env.JWT_SECRET,
     GITHUB_OAUTH_CLIENT_ID: process.env.GITHUB_OAUTH_CLIENT_ID,
     GITHUB_OAUTH_CLIENT_SECRET: process.env.GITHUB_OAUTH_CLIENT_SECRET,

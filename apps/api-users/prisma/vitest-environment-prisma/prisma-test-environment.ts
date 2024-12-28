@@ -7,11 +7,11 @@ import { Environment } from 'vitest/environments';
 const prisma = new PrismaClient();
 
 function generateDatabaseURL(schema: string) {
-  if (!process.env.DATABASE_URL) {
-    throw new Error('Please provide a DATABASE_URL environment variable.');
+  if (!process.env.DATABASE_URL_USERS) {
+    throw new Error('Please provide a DATABASE_URL_USERS environment variable.');
   }
 
-  const url = new URL(process.env.DATABASE_URL);
+  const url = new URL(process.env.DATABASE_URL_USERS);
 
   url.searchParams.set('schema', schema);
 
@@ -24,7 +24,7 @@ export default <Environment>{
     const schema = randomUUID();
     const databaseURL = generateDatabaseURL(schema);
 
-    process.env.DATABASE_URL = databaseURL;
+    process.env.DATABASE_URL_USERS = databaseURL;
 
     execSync('npx prisma migrate deploy');
 
@@ -37,5 +37,5 @@ export default <Environment>{
       },
     };
   },
-  transformMode: "web",
+  transformMode: "ssr",
 };

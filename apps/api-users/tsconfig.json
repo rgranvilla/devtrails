@@ -2,7 +2,7 @@
   "extends": "@devtrails/tsconfig/node.json",
   "include": ["src/**/*", "@types/**/*", "prisma/**/*"],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
     },

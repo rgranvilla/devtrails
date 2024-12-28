@@ -17,9 +17,8 @@ export function registerMiddlewares(app: FastifyInstance) {
   app.register(fastifySwagger, {
     openapi: {
       info: {
-        title: 'Devtrails Core API',
-        description:
-          'API DevTrails Core - A API central para gerenciar autenticação, autorização e recursos essenciais de suas aplicações. Responsável pelo gerenciamento completo de usuários e organizações, oferece suporte a todo o ciclo de vida de contas, incluindo criação, atualização, exclusão e recuperação. Com funcionalidades robustas de autenticação e autorização, atua como o gateway principal para integrar e orquestrar serviços relacionados, garantindo segurança e eficiência no funcionamento das nossas aplicações.',
+        title: 'Devtrails API Core',
+        description: 'The core management services.',
         version: '1.0.0',
       },
       components: {

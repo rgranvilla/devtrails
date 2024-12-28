@@ -5,10 +5,12 @@ import {
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
-import { errorHandler } from '@/core/errors/error-handler'
-import { registerMiddlewares } from '@/core/middlewares/registers'
+import { registerMiddlewares } from '@/interfaces/middlewares/registers'
+import { errorHandler } from '@/shared/errors/error-handler'
 
-export const app = fastify().withTypeProvider<ZodTypeProvider>()
+export const app = fastify({
+  logger: true,
+}).withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
