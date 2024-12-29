@@ -6,15 +6,17 @@ import {
 } from 'fastify-type-provider-zod'
 
 import { registerMiddlewares } from '@/interfaces/middlewares/registers'
-import { errorHandler } from '@/shared/errors/error-handler'
 
-export const app = fastify({
-  logger: true,
-}).withTypeProvider<ZodTypeProvider>()
+import { handleError } from './shared/errors/handle-error'
+
+export const app = fastify().withTypeProvider<ZodTypeProvider>()
+// {
+//   logger: true,
+// },
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)
 
 registerMiddlewares(app)
 
-app.setErrorHandler(errorHandler)
+app.setErrorHandler(handleError)

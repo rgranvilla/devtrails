@@ -9,7 +9,6 @@ interface IUserProps {
   email: string
   password: string
   avatarUrl?: string | null
-  isSuperAdmin?: boolean
   createdAt: Date
   updatedAt: Date
   deletedAt?: Date | null
@@ -33,7 +32,6 @@ export class User {
     this._id = id ?? randomUUID()
     this._props = {
       ...props,
-      isSuperAdmin: props.isSuperAdmin ?? false,
       avatarUrl:
         props.avatarUrl && props.avatarUrl?.length > 0 ? props.avatarUrl : null,
       createdAt: props.createdAt ?? new Date(),
@@ -80,14 +78,6 @@ export class User {
 
   public get email(): string {
     return this._props?.email
-  }
-
-  public set isSuperAdmin(value: boolean) {
-    this._props.isSuperAdmin = value
-  }
-
-  public get isSuperAdmin(): boolean | undefined {
-    return this._props?.isSuperAdmin
   }
 
   public set password(value: string) {

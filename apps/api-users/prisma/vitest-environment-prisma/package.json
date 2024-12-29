@@ -1,7 +1,10 @@
 {
   "name": "vitest-environment-prisma",
   "version": "1.0.0",
+  "description": "Vitest environment for Prisma",
   "main": "prisma-test-environment.ts",
-  "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

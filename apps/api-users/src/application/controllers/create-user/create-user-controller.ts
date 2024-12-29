@@ -3,7 +3,7 @@ import type { FastifyError, FastifyReply, FastifyRequest } from 'fastify'
 import { createUserBodySchema } from '@/application/dtos/create-user.dto'
 import { CreateUserUseCase } from '@/domain/use-cases/create-user-use-case'
 import { PrismaUsersRepository } from '@/infra/repositories/prisma/prismaUsersRepository'
-import { errorHandler } from '@/shared/errors/error-handler'
+import { handleError } from '@/shared/errors/handle-error'
 import { hashPassword } from '@/shared/utils/hash-password'
 import { passwordSchema } from '@/shared/utils/zod-validators'
 
@@ -28,6 +28,6 @@ export async function createUserController(
       ...user.asPlainObject,
     })
   } catch (error) {
-    errorHandler(error as FastifyError, request, reply)
+    handleError(error as FastifyError, request, reply)
   }
 }

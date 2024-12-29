@@ -7,7 +7,6 @@ export class UserMapper {
     return {
       ...user.asPlainObject,
       avatarUrl: user.avatarUrl ?? null,
-      isSuperAdmin: user.isSuperAdmin ?? false,
       deletedAt: user.deletedAt ?? null,
     }
   }

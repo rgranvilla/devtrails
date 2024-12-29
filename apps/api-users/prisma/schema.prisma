@@ -8,23 +8,36 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(uuid())
-  username     String    @unique
-  firstName    String    @map("first_name")
-  lastName     String    @map("last_name")
-  email        String    @unique
-  password     String
-  avatarUrl    String?   @map("avatar_url")
-  isSuperAdmin Boolean   @default(false) @map("is_super_admin")
-  createdAt    DateTime  @default(now()) @map("created_at")
-  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
-  deletedAt    DateTime? @map("deleted_at")
+  id        String    @id @default(uuid())
+  username  String    @unique
+  firstName String    @map("first_name")
+  lastName  String    @map("last_name")
+  email     String    @unique
+  password  String
+  avatarUrl String?   @map("avatar_url")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
 
   membership        Membership[]
-  own_organizations OrganizationOwner[]
+  ownOrganizations OrganizationOwner[]
+  superAdmin        SuperAdmin[]
 
   @@index([username, firstName, lastName, email])
   @@map("users")
+}
+
+model SuperAdmin {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id") @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+  deletedAt DateTime @map("deleted_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("super_admins")
 }
 
 model Membership {

@@ -17,7 +17,6 @@ describe('User Mapper', () => {
   const rawUser: UserType = {
     ...user.asPlainObject,
     avatarUrl: user.avatarUrl ?? null,
-    isSuperAdmin: user.isSuperAdmin ?? false,
     deletedAt: user.deletedAt ?? null,
   }
 

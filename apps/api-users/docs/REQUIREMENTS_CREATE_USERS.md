@@ -14,7 +14,9 @@
 - [x] Caso o **email** já exista no sistema, deve retornar um erro informando já foi utilizado.  
 - [x] Caso o **username** já exista no sistema, deve retornar um erro informando já foi utilizado.  
 - [x] A senha do usuário deve ser uma senha forte: A senha deve conter no mínimo 8 caracteres, incluindo pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial (@, $, !, %, *, ?, &).  
-- [x] O campo **avatarUrl** será opcional e salvo como `null` caso não fornecido.  
+- [x] O campo **avatarUrl** será opcional e salvo como `null` caso não fornecido.
+- [x] O campo **isSuperAdmin** durante a criação será sempre setado como false.
+- [x] Se o valor do campo **isSuperAdmin** vier como true, lançar um "Unauthorized Error".
 
 ---
 

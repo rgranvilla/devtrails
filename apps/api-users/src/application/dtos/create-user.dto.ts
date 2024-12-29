@@ -9,7 +9,15 @@ export const createUserBodySchema = z.object({
   email: z.string().email(),
   password: passwordSchema,
   avatarUrl: z.string().nullable(),
-  isSuperAdmin: z.boolean().default(false),
+})
+
+export const userBodySchema = z.object({
+  username: z.string().min(5),
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
+  email: z.string().email(),
+  password: passwordSchema,
+  avatarUrl: z.string().nullable(),
 })
 
 export type CreateUserDTO = z.infer<typeof createUserBodySchema>

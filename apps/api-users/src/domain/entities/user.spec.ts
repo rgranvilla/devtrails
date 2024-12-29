@@ -20,7 +20,6 @@ describe('User Entetie', () => {
     expect(user.email).toBe('johndoe@mail.com')
     expect(user.password).toBe('123456')
     expect(user.avatarUrl).toBeDefined()
-    expect(user.isSuperAdmin).toBe(false)
     expect(user.createdAt).toBeInstanceOf(Date)
     expect(user.updatedAt).toBeInstanceOf(Date)
     expect(user.deletedAt).toBeDefined()
@@ -164,29 +163,6 @@ describe('User Entetie', () => {
     expect(updatedUser.avatarUrl).toBe('johndoe.png')
   })
 
-  it('should update isSuperAdmin from User instance', () => {
-    const user = new User({
-      username: 'johndoe',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'johndoe@mail.com',
-      password: '123456',
-    })
-
-    const { id, props } = user
-
-    const updatedUser = new User(
-      {
-        ...props,
-        isSuperAdmin: true,
-      },
-      id,
-    )
-
-    expect(updatedUser.id).toBe(id)
-    expect(updatedUser.isSuperAdmin).toBeTruthy()
-  })
-
   it('should update createdAt from User instance', () => {
     const user = new User({
       username: 'johndoe',
@@ -276,7 +252,6 @@ describe('User Entetie', () => {
     user.email = 'jane_doe@mail.com'
     user.password = '654321'
     user.avatarUrl = 'jane_eve.png'
-    user.isSuperAdmin = true
     user.createdAt = newDate
     user.updatedAt = newDate
     user.deletedAt = newDate
