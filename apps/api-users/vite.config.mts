@@ -29,7 +29,6 @@ export default defineConfig({
       exclude: [
         'prisma',
         'docs',
-        'coverage',
         'dist',
         'node_modules',
         'src/@types',

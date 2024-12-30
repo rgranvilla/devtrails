@@ -5,7 +5,7 @@ import {
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod'
 
-import { registerMiddlewares } from '@/interfaces/middlewares/registers'
+import { registerMiddlewares } from '@/infra/middlewares/registers'
 
 import { handleError } from './shared/errors/handle-error'
 

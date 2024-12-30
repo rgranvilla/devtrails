@@ -16,7 +16,8 @@
     "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
     "test:e2e": "dotenv -e ../../.env -- vitest run --dir src/application/controllers/__tests__",
     "test:e2e:watch": "dotenv -e ../../.env -- vitest --dir src/application/controllers/__tests__ --watch",
-    "test:ui": "dotenv -e ../../.env -- vitest --ui --coverage"
+    "test:ui": "dotenv -e ../../.env -- vitest --ui --coverage",
+    "test:cov": "dotenv -e ../../.env -- vitest --coverage"
   },
   "dependencies": {
     "@devtrails/auth": "workspace:*",

@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import { InMemoryUsersRepository } from '@/infra/repositories/in-memory/inMemoryUsersRepository'
 
-import { CreateUserUseCase } from './create-user-use-case'
+import { CreateUserUseCase } from '../create-user-use-case'
 
 let usersRepository: InMemoryUsersRepository
 let sut: CreateUserUseCase
