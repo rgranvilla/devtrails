@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TokenType {
+  ACCESS
+  REFRESH
+  RECOVERY
+}
+
+enum Provider {
+  GOOGLE
+  FACEBOOK
+  GITHUB
+  CREDENTIALS
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  MEMBER
+  BILLING
+}
+
+model Session {
+  id           String    @id @default(uuid())
+  userId       String    @map("user_id")
+  token        String    @unique
+  refreshToken String    @unique
+  expiresDate  DateTime  @map("expires_date")
+  type         TokenType
+  provider     Provider
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  username  String    @unique
+  firstName String    @map("first_name")
+  lastName  String    @map("last_name")
+  email     String    @unique
+  password  String
+  avatarUrl String?   @map("avatar_url")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  sessions          Session[]
+  ownsOrganizations Organization[]
+  ownsProjects      Project[]
+  memberOn          Member[]
+  invites           Invite[]
+  superAdmin        SuperAdmin[]
+
+  @@index([username, firstName, lastName, email])
+  @@map("users")
+}
+
+model SuperAdmin {
+  id        String   @id @default(uuid())
+  userId    String   @unique @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+  deletedAt DateTime @map("deleted_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("super_admins")
+}
+
+model Organization {
+  id        String    @id @default(uuid())
+  ownerId   String    @map("owner_id")
+  name      String
+  slug      String
+  domain    String?
+  logoUrl   String?   @map("logo_url")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  members  Member[]
+  invites  Invite[]
+  projects Project[]
+
+  owner User @relation(fields: [ownerId], references: [id])
+
+  @@unique([name, slug, domain])
+  @@index([name, slug, domain])
+  @@map("organizations")
+}
+
+model Member {
+  id             String    @id @default(uuid())
+  userId         String    @map("user_id")
+  organizationId String    @map("organization_id")
+  role           Role      @default(MEMBER)
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id])
+
+  @@unique([userId, organizationId])
+  @@map("members")
+}
+
+model Invite {
+  id             String   @id @default(uuid())
+  authorId       String   @map("author_id")
+  organizationId String   @map("organization_id")
+  email          String
+  role           Role
+  expires        DateTime
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  author User? @relation(fields: [authorId], references: [id])
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@unique([email, organizationId])
+  @@index([email])
+  @@map("invites")
+}
+
+model Project {
+  id             String    @id @default(uuid())
+  ownerId        String    @map("owner_id")
+  organizationId String    @map("organization_id")
+  name           String
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  owner        User         @relation(fields: [ownerId], references: [id])
+  organization Organization @relation(fields: [organizationId], references: [id])
+
+  @@map("projects")
+}

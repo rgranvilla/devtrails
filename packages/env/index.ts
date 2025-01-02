@@ -3,18 +3,15 @@ import { z } from 'zod'
 
 export const env = createEnv({
   server: {
-    SERVER_PORT_CORE: z.coerce.number().default(5000),
-    SERVER_PORT_USERS: z.coerce.number().default(5001),
-    SERVER_PORT_ORGANIZATIONS: z.coerce.number().default(5002),
-    SERVER_PORT_PROJECTS: z.coerce.number().default(5001),
-    DATABASE_URL_CORE: z.string().url(),
-    DATABASE_URL_USERS: z.string().url(),
-    DATABASE_URL_ORGANIZATIONS: z.string().url(),
-    DATABASE_URL_PROJECTS: z.string().url(),
+    SERVER_PORT: z.coerce.number().default(5000),
+    DATABASE_URL: z.string().url(),
 
     SALT_ROUNDS: z.coerce.number().default(8),
+    CRYPTO_SECRET: z.string(),
 
     JWT_SECRET: z.string(),
+    JWT_EXPIRES_IN_SECONDS: z.coerce.number().default(3600), // 1 hour
+    JWT_REFRESH_EXPIRES_IN_SECONDS: z.coerce.number().default(604800), // 7 days
 
     GITHUB_OAUTH_CLIENT_ID: z.string(),
     GITHUB_OAUTH_CLIENT_SECRET: z.string(),
@@ -29,16 +26,13 @@ export const env = createEnv({
     NEXT_PUBLIC_API_URL: z.string(),
   },
   runtimeEnv: {
-    SERVER_PORT_CORE: process.env.SERVER_PORT_CORE,
-    SERVER_PORT_USERS: process.env.SERVER_PORT_USERS,
-    SERVER_PORT_ORGANIZATIONS: process.env.SERVER_PORT_ORGANIZATIONS,
-    SERVER_PORT_PROJECTS: process.env.SERVER_PORT_PROJECTS,
-    DATABASE_URL_CORE: process.env.DATABASE_URL_CORE,
-    DATABASE_URL_USERS: process.env.DATABASE_URL_USERS,
-    DATABASE_URL_ORGANIZATIONS: process.env.DATABASE_URL_ORGANIZATIONS,
-    DATABASE_URL_PROJECTS: process.env.DATABASE_URL_PROJECTS,
+    SERVER_PORT: process.env.SERVER_PORT,
+    DATABASE_URL: process.env.DATABASE_URL,
     SALT_ROUNDS: process.env.SALT_ROUNDS,
+    CRYPTO_SECRET: process.env.CRYPTO_SECRET,
     JWT_SECRET: process.env.JWT_SECRET,
+    JWT_EXPIRES_IN_SECONDS: process.env.JWT_EXPIRES_IN_SECONDS,
+    JWT_REFRESH_EXPIRES_IN_SECONDS: process.env.JWT_REFRESH_EXPIRES_IN_SECONDS,
     GITHUB_OAUTH_CLIENT_ID: process.env.GITHUB_OAUTH_CLIENT_ID,
     GITHUB_OAUTH_CLIENT_SECRET: process.env.GITHUB_OAUTH_CLIENT_SECRET,
     GITHUB_OAUTH_REDIRECT_URI: process.env.GITHUB_OAUTH_REDIRECT_URI,

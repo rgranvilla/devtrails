@@ -1,63 +1,12 @@
-version: '3.7'
-
 services:
+
   # Banco de dados para API Core
-  pg-core:
+  pg-devtrails:
     image: bitnami/postgresql:latest
-    container_name: pg-core
+    container_name: pg-devtrails
     ports:
-      - '5432:5432'  # Porta do banco de dados
+      - "5432:5432" # Porta do banco de dados
     environment:
       - POSTGRES_USER=devtrails
       - POSTGRES_PASSWORD=devtrails
-      - POSTGRES_DB=devtrails_core_db
-    volumes:
-      - pg-core-data:/bitnami/postgresql
-
-  # Banco de dados para API Users
-  pg-users:
-    image: bitnami/postgresql:latest
-    container_name: pg-users
-    ports:
-      - '5433:5432'  # Porta do banco de dados, configurada diferente para evitar conflitos
-    environment:
-      - POSTGRES_USER=devtrails
-      - POSTGRES_PASSWORD=devtrails
-      - POSTGRES_DB=devtrails_users_db
-    volumes:
-      - pg-users-data:/bitnami/postgresql
-
-  # Banco de dados para API Organizations
-  pg-organizations:
-    image: bitnami/postgresql:latest
-    container_name: pg-organizations
-    ports:
-      - '5434:5432'  # Porta do banco de dados
-    environment:
-      - POSTGRES_USER=devtrails
-      - POSTGRES_PASSWORD=devtrails
-      - POSTGRES_DB=devtrails_organizations_db
-    volumes:
-      - pg-organizations-data:/bitnami/postgresql
-
-  # Banco de dados para API Projects
-  pg-projects:
-    image: bitnami/postgresql:latest
-    container_name: pg-projects
-    ports:
-      - '5435:5432'  # Porta do banco de dados
-    environment:
-      - POSTGRES_USER=devtrails
-      - POSTGRES_PASSWORD=devtrails
-      - POSTGRES_DB=devtrails_projects_db
-    volumes:
-      - pg-projects-data:/bitnami/postgresql
-volumes:
-  pg-core-data:
-    driver: local
-  pg-users-data:
-    driver: local
-  pg-organizations-data:
-    driver: local
-  pg-projects-data:
-    driver: local
+      - POSTGRES_DB=devtrails_db
