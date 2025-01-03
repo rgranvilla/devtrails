@@ -48,6 +48,10 @@ export function registerMiddlewares(app: FastifyInstance) {
 
   app.register(fastifyJwt, {
     secret: env.JWT_SECRET,
+    cookie: {
+      cookieName: 'refreshToken',
+      signed: false,
+    },
   })
 
   app.register(fastifyCookie)

@@ -18,10 +18,9 @@ export async function sessionsRoutes(app: FastifyInstance) {
       summary: 'Authenticate with Credentials.',
       body: authenticateCredentialsBodySchema,
       response: {
-        201: z
+        200: z
           .object({
-            token: z.string(),
-            refreshToken: z.string(),
+            token: z.string().jwt(),
           })
           .describe('Session authenticated.'),
         400: z
@@ -70,7 +69,6 @@ export async function sessionsRoutes(app: FastifyInstance) {
         201: z
           .object({
             token: z.string(),
-            refreshToken: z.string(),
           })
           .describe('Session authenticated.'),
         400: z

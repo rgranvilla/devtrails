@@ -3,6 +3,7 @@ import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
 import { auth } from '@/infra/middlewares/auth'
+import { verifyJWT } from '@/infra/middlewares/verifyJWT'
 import { ValidationErrorDetailSchema } from '@/shared/errors/schema-errors'
 
 import { createUserController } from '../controllers/create-user-controller'
@@ -182,7 +183,7 @@ export async function usersRoutes(app: FastifyInstance) {
 
   app
     .withTypeProvider<ZodTypeProvider>()
-    .register(auth)
+    .register(verifyJWT)
     .route({
       method: 'GET',
       url: '/',
@@ -190,6 +191,7 @@ export async function usersRoutes(app: FastifyInstance) {
       schema: {
         tags: ['Users'],
         summary: 'Get all users.',
+        security: [{ bearerAuth: [] }],
         response: {
           201: z
             .object({

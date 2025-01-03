@@ -27,7 +27,17 @@ export async function authenticateWithCredentialsController(
     const { token, refreshToken } =
       await authenticateCredentialsUseCase.execute(email, password)
 
-    return reply.status(201).send({ token, refreshToken })
+    console.log('token', token)
+
+    return reply
+      .setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true, // send cookie over HTTPS only
+        httpOnly: true,
+        sameSite: true, // alternative CSRF protection
+      })
+      .status(200)
+      .send({ token })
   } catch (error) {
     handleError(error as FastifyError, request, reply)
   }

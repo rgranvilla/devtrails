@@ -9,7 +9,13 @@ export interface ICreateUserTokenPayload {
 
 export abstract class ISessionsRepository {
   abstract create(data: Session): Promise<Session>
-  abstract refreshToken(sessionId: string, token: string): Promise<Session>
+
+  abstract refreshToken(
+    refreshToken: string,
+    newToken: string,
+  ): Promise<Session>
+
+  abstract revokeToken(refreshToken: string): Promise<void>
 
   abstract findByRefreshToken(refreshToken: string): Promise<Session | null>
 }

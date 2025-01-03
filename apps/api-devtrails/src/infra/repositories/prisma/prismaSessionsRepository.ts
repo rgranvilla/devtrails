@@ -6,6 +6,12 @@ import type { ISessionsRepository } from '../ISessionsRepository'
 
 export class PrismaSessionsRepository implements ISessionsRepository {
   async create(data: Session): Promise<Session> {
+    await prisma.session.deleteMany({
+      where: {
+        userId: data.userId,
+      },
+    })
+
     const raw = SessionMapper.toDatabase(data)
 
     const createdSession = await prisma.session.create({
@@ -15,18 +21,26 @@ export class PrismaSessionsRepository implements ISessionsRepository {
     return SessionMapper.toDomain(createdSession)
   }
 
-  async refreshToken(sessionId: string, token: string): Promise<Session> {
+  async refreshToken(refreshToken: string, newToken: string): Promise<Session> {
     const updatedSession = await prisma.session.update({
       where: {
-        id: sessionId,
+        refreshToken,
       },
       data: {
-        token,
+        token: newToken,
         type: 'REFRESH',
       },
     })
 
     return SessionMapper.toDomain(updatedSession)
+  }
+
+  async revokeToken(refreshToken: string): Promise<void> {
+    await prisma.session.delete({
+      where: {
+        refreshToken,
+      },
+    })
   }
 
   async findByRefreshToken(refreshToken: string): Promise<Session | null> {

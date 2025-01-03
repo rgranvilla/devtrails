@@ -6,7 +6,6 @@ import { Session } from '@/domain/entities/session'
 import type { ISessionsRepository } from '@/infra/repositories/ISessionsRepository'
 import type { IUsersRepository } from '@/infra/repositories/IUsersRepository'
 import { AuthError, ConflictError } from '@/shared/errors/custom-errors'
-import { CryptoHelper } from '@/shared/utils/crypto-helper'
 
 interface IAuthenticateCredentialsResponse {
   token: string
@@ -48,26 +47,12 @@ export class AuthenticateCredentialsUseCase {
       throw new AuthError('Invalid credentials')
     }
 
-    const userData = {
-      userId: user.id,
-      username: user.username,
-      email: user.email,
-      createAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    }
-
-    const encryptData = new CryptoHelper()
-    const encryptedData = await encryptData.encryptData(userData)
-
     const token = await this.reply.jwtSign(
       {
         sub: user.id,
-        data: encryptedData,
       },
       {
-        sign: {
-          expiresIn: `${env.JWT_EXPIRES_IN_SECONDS}s`,
-        },
+        expiresIn: `${env.JWT_EXPIRES_IN_SECONDS}s`,
       },
     )
 
@@ -78,9 +63,7 @@ export class AuthenticateCredentialsUseCase {
         sub: user.id,
       },
       {
-        sign: {
-          expiresIn: `${env.JWT_REFRESH_EXPIRES_IN_SECONDS}s`,
-        },
+        expiresIn: `${env.JWT_REFRESH_EXPIRES_IN_SECONDS}s`,
       },
     )
 

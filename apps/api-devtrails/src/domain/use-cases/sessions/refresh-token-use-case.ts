@@ -1,9 +1,9 @@
+import { env } from '@devtrails/env'
 import type { FastifyReply } from 'fastify'
 
 import type { ISessionsRepository } from '@/infra/repositories/ISessionsRepository'
 import type { IUsersRepository } from '@/infra/repositories/IUsersRepository'
 import { ForbiddenError, NotFoundError } from '@/shared/errors/custom-errors'
-import { CryptoHelper } from '@/shared/utils/crypto-helper'
 
 interface IRefreshTokenResponse {
   token: string
@@ -28,6 +28,7 @@ export class RefreshTokenUseCase {
     refreshToken: string,
     userId: string,
   ): Promise<IRefreshTokenResponse> {
+    console.log('[INITIALE REFRESH USE CASE]')
     const session =
       await this.sessionsRepository.findByRefreshToken(refreshToken)
 
@@ -39,24 +40,16 @@ export class RefreshTokenUseCase {
       throw new ForbiddenError()
     }
 
-    const user = await this.usersRepository.findById(userId)
-
-    if (!user) {
-      throw new NotFoundError('User not found')
-    }
-
-    const encryptData = new CryptoHelper()
-    const encryptedData = await encryptData.encryptData(user)
-
-    const token = await this.reply.jwtSign({
-      sub: session.userId,
-      data: encryptedData,
-    })
-
-    const { token: newToken } = await this.sessionsRepository.refreshToken(
-      session.id,
-      token,
+    const newToken = await this.reply.jwtSign(
+      {
+        sub: userId,
+      },
+      {
+        expiresIn: `${env.JWT_EXPIRES_IN_SECONDS}s`,
+      },
     )
+
+    await this.sessionsRepository.refreshToken(refreshToken, newToken)
 
     return {
       token: newToken,
