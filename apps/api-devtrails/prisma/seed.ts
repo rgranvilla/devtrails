@@ -66,7 +66,6 @@ async function seed() {
   await prisma.organization.create({
     data: {
       name: 'Acme Inc',
-      domain: 'acme.com',
       slug: 'acme-inc',
       logoUrl: faker.image.urlLoremFlickr(),
       ownerId: userOne.id,
@@ -93,6 +92,6 @@ async function seed() {
 }
 
 seed().then(() => {
-  console.log('Seeding complete')
+  console.info('Seeding complete')
   prisma.$disconnect()
 })

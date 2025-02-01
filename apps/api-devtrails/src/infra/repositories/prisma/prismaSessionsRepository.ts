@@ -1,3 +1,6 @@
+import { env } from '@devtrails/env'
+import dayjs from 'dayjs'
+
 import type { Session } from '@/domain/entities/session'
 import { prisma } from '@/infra/database/prisma'
 import { SessionMapper } from '@/infra/mappers/sessionMapper'
@@ -28,6 +31,9 @@ export class PrismaSessionsRepository implements ISessionsRepository {
       },
       data: {
         token: newToken,
+        expiresDate: dayjs()
+          .add(env.JWT_EXPIRES_IN_SECONDS, 'seconds')
+          .toDate(),
         type: 'REFRESH',
       },
     })

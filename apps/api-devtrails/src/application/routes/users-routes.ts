@@ -2,8 +2,7 @@ import type { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
-import { auth } from '@/infra/middlewares/auth'
-import { verifyJWT } from '@/infra/middlewares/verifyJWT'
+import { jwtMiddleware } from '@/infra/middlewares/verifyJWT'
 import { ValidationErrorDetailSchema } from '@/shared/errors/schema-errors'
 
 import { createUserController } from '../controllers/create-user-controller'
@@ -66,67 +65,64 @@ export async function usersRoutes(app: FastifyInstance) {
     },
   })
 
-  app
-    .withTypeProvider<ZodTypeProvider>()
-    .register(auth)
-    .route({
-      method: 'PUT',
-      url: '/',
-      handler: updateUserController,
-      schema: {
-        tags: ['Users'],
-        summary: 'Update an user.',
-        security: [{ bearerAuth: [] }],
-        body: updateUserBodySchema,
-        response: {
-          201: z
-            .object({
-              id: z.string().uuid(),
-              username: z.string(),
-              firstName: z.string(),
-              lastName: z.string(),
-              email: z.string().email(),
-              password: z.string(),
-              avatarUrl: z.string().nullable(),
-              createdAt: z.date(),
-              updatedAt: z.date(),
-              deletedAt: z.date().nullable(),
-            })
-            .describe('User successfully updated'),
-          400: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-              details: z.union([z.array(ValidationErrorDetailSchema), z.any()]),
-            })
-            .describe('Validation error'),
-          401: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-            })
-            .describe('Unauthorized error'),
-          403: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-            })
-            .describe('Forbidden error'),
-          409: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-            })
-            .describe('Conflict error'),
-          500: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-            })
-            .describe('Internal Server Error'),
-        },
+  app.withTypeProvider<ZodTypeProvider>().route({
+    method: 'PUT',
+    url: '/',
+    handler: updateUserController,
+    schema: {
+      tags: ['Users'],
+      summary: 'Update an user.',
+      security: [{ bearerAuth: [] }],
+      body: updateUserBodySchema,
+      response: {
+        201: z
+          .object({
+            id: z.string().uuid(),
+            username: z.string(),
+            firstName: z.string(),
+            lastName: z.string(),
+            email: z.string().email(),
+            password: z.string(),
+            avatarUrl: z.string().nullable(),
+            createdAt: z.date(),
+            updatedAt: z.date(),
+            deletedAt: z.date().nullable(),
+          })
+          .describe('User successfully updated'),
+        400: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+            details: z.union([z.array(ValidationErrorDetailSchema), z.any()]),
+          })
+          .describe('Validation error'),
+        401: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+          })
+          .describe('Unauthorized error'),
+        403: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+          })
+          .describe('Forbidden error'),
+        409: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+          })
+          .describe('Conflict error'),
+        500: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+          })
+          .describe('Internal Server Error'),
       },
-    })
+    },
+  })
 
   app.withTypeProvider<ZodTypeProvider>().route({
     method: 'GET',
@@ -135,6 +131,7 @@ export async function usersRoutes(app: FastifyInstance) {
     schema: {
       tags: ['Users'],
       summary: 'Get an user.',
+      security: [{ bearerAuth: [] }],
       params: z.object({
         id: z.string().uuid(),
       }),
@@ -181,54 +178,52 @@ export async function usersRoutes(app: FastifyInstance) {
     },
   })
 
-  app
-    .withTypeProvider<ZodTypeProvider>()
-    .register(verifyJWT)
-    .route({
-      method: 'GET',
-      url: '/',
-      handler: getAllUsersController,
-      schema: {
-        tags: ['Users'],
-        summary: 'Get all users.',
-        security: [{ bearerAuth: [] }],
-        response: {
-          201: z
-            .object({
-              users: z.array(
-                z.object({
-                  id: z.string().uuid(),
-                  username: z.string(),
-                  firstName: z.string(),
-                  lastName: z.string(),
-                  email: z.string().email(),
-                  avatarUrl: z.string().nullable(),
-                  createdAt: z.date(),
-                  updatedAt: z.date(),
-                  deletedAt: z.date().nullable(),
-                }),
-              ),
-            })
-            .describe('Users successfully getted'),
-          401: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-            })
-            .describe('Unauthorized error'),
-          403: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-            })
-            .describe('Forbidden error'),
-          500: z
-            .object({
-              error: z.string(),
-              message: z.string(),
-            })
-            .describe('Internal Server Error'),
-        },
+  app.withTypeProvider<ZodTypeProvider>().route({
+    method: 'GET',
+    url: '/',
+    preHandler: [jwtMiddleware],
+    handler: getAllUsersController,
+    schema: {
+      tags: ['Users'],
+      summary: 'Get all users.',
+      security: [{ bearerAuth: [] }],
+      response: {
+        201: z
+          .object({
+            users: z.array(
+              z.object({
+                id: z.string().uuid(),
+                username: z.string(),
+                firstName: z.string(),
+                lastName: z.string(),
+                email: z.string().email(),
+                avatarUrl: z.string().nullable(),
+                createdAt: z.date(),
+                updatedAt: z.date(),
+                deletedAt: z.date().nullable(),
+              }),
+            ),
+          })
+          .describe('Users successfully getted'),
+        401: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+          })
+          .describe('Unauthorized error'),
+        403: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+          })
+          .describe('Forbidden error'),
+        500: z
+          .object({
+            error: z.string(),
+            message: z.string(),
+          })
+          .describe('Internal Server Error'),
       },
-    })
+    },
+  })
 }

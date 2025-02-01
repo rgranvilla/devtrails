@@ -30,8 +30,6 @@ describe('Create User Controller', () => {
       avatarUrl: 'http://avatar.com/johndoe',
     })
 
-    console.log('response.body', response.body)
-
     expect(response.status).toBe(201)
     expect(response.body).toMatchObject({
       id: expect.any(String),

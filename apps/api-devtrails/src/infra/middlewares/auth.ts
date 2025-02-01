@@ -7,7 +7,7 @@ export const auth = fastifyPlugin(async (app: FastifyInstance) => {
   app.addHook('preHandler', async (request) => {
     request.getCurrentUserId = async () => {
       try {
-        const { sub } = await request.jwtVerify<{ sub: string }>()
+        const { sub } = await request.jwtDecode<{ sub: string }>()
 
         return sub
       } catch {

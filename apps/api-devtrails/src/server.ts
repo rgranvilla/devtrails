@@ -7,8 +7,8 @@ app
     port: env.SERVER_PORT,
   })
   .then(() => {
-    console.log(`Server is running on http://localhost:${env.SERVER_PORT}`)
-    console.log(
+    console.info(`Server is running on http://localhost:${env.SERVER_PORT}`)
+    console.info(
       `Swagger is running on http://localhost:${env.SERVER_PORT}/docs`,
     )
   })

@@ -23,11 +23,9 @@ export async function refreshTokensController(
     )
 
     const { token } = await refreshTokenUseCase.execute(refreshToken, userId)
-    console.log('[NEW TOKEN]', token)
-    return reply
-      .setCookie('accessToken', JSON.stringify(token))
-      .status(201)
-      .send({ token })
+
+    console.info('[REFRESH TOKEN SUCCESS]')
+    return reply.status(201).send({ token })
   } catch (error) {
     handleError(error as FastifyError, request, reply)
   }

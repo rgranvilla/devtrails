@@ -10,7 +10,7 @@ export const env = createEnv({
     CRYPTO_SECRET: z.string(),
 
     JWT_SECRET: z.string(),
-    JWT_EXPIRES_IN_SECONDS: z.coerce.number().default(3600), // 1 hour
+    JWT_EXPIRES_IN_SECONDS: z.coerce.number().default(900), // 1 hour
     JWT_REFRESH_EXPIRES_IN_SECONDS: z.coerce.number().default(604800), // 7 days
 
     GITHUB_OAUTH_CLIENT_ID: z.string(),
@@ -23,7 +23,6 @@ export const env = createEnv({
   },
   client: {},
   shared: {
-    NEXT_PUBLIC_API_URL: z.string(),
     API_URL: z.string(),
   },
   runtimeEnv: {
@@ -40,7 +39,6 @@ export const env = createEnv({
     GOOGLE_OAUTH_CLIENT_ID: process.env.GOOGLE_OAUTH_CLIENT_ID,
     GOOGLE_OAUTH_CLIENT_SECRET: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
     GOOGLE_OAUTH_REDIRECT_URI: process.env.GOOGLE_OAUTH_REDIRECT_URI,
-    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     API_URL: process.env.API_URL,
     STORAGE_DISK: process.env.STORAGE_DISK,
   },

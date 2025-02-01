@@ -7,40 +7,68 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  OWNER // Proprietário da organização
+  ADMIN // Administrador da organização
+  MEMBER // Membro da organização
+  BILLING // Responsável pela cobrança
+}
+
+// Users and Sessions
+
 enum TokenType {
-  PREPARE
-  ACCESS
-  REFRESH
-  RECOVERY
+  PREPARE // Token de preparação
+  ACCESS // Token de acesso
+  REFRESH // Token de atualização
+  RECOVERY // Token de recuperação
 }
 
 enum Provider {
   GOOGLE
   FACEBOOK
   GITHUB
-  CREDENTIALS
+  CREDENTIALS // Credenciais de email e senha
 }
 
-enum Role {
-  OWNER
-  ADMIN
-  MEMBER
-  BILLING
+enum AddressType {
+  HOME
+  WORK
+  ORGANIZATION
 }
 
-model Session {
-  id           String    @id @default(uuid())
-  userId       String    @map("user_id")
-  token        String    @unique
-  refreshToken String    @unique
-  expiresDate  DateTime  @map("expires_date")
-  type         TokenType
-  provider     Provider
-  createdAt    DateTime  @default(now()) @map("created_at")
+enum LegalNature {
+  EIRELI // Empresa Individual de Responsabilidade Limitada
+  LTDA // Sociedade Limitada
+  SS // Sociedade Simples
+  SA // Sociedade Anônima
+}
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+enum OrganizationType {
+  HEADQUARTERS
+  BRANCH
+}
 
-  @@map("sessions")
+enum OrganizationSize {
+  MEI // Microempreendedor Individual
+  ME // Microempresa
+  EPP // Empresa de Pequeno Porte
+  EMP // Empresa de Médio Porte 
+  EGP // Empresa de Grande Porte
+}
+
+enum RegistrationStatus {
+  ATIVO
+  SUSPENSO
+  INAPTO
+  BAIXADO
+  NULO
+  INATIVO
+  EXTINTO
+}
+
+enum StakeholderRole {
+  OWNER // Proprietário
+  PARTNER // Sócio
 }
 
 model User {
@@ -61,9 +89,25 @@ model User {
   memberOn          Member[]
   invites           Invite[]
   superAdmin        SuperAdmin[]
+  UserAddress       UserAddress[]
 
-  @@index([username, firstName, lastName, email])
+  @@index([username, email])
   @@map("users")
+}
+
+model Session {
+  id           String    @id @default(uuid())
+  userId       String    @map("user_id")
+  token        String    @unique
+  refreshToken String    @unique @map("refresh_token")
+  expiresDate  DateTime  @map("expires_date")
+  type         TokenType
+  provider     Provider
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
 }
 
 model SuperAdmin {
@@ -75,16 +119,66 @@ model SuperAdmin {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@index([userId])
   @@map("super_admins")
+}
+
+model Address {
+  id           String  @id @default(uuid())
+  street       String
+  number       String
+  complement   String?
+  neighborhood String
+  city         String
+  state        String
+  country      String
+  postalCode   String  @map("postal_code")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+  deletedAt    DateTime? @map("deleted_at")
+
+  UserAddress         UserAddress[]
+  OrganizationAddress OrganizationAddress[]
+
+  @@map("addresses")
+}
+
+model UserAddress {
+  id        String      @id @default(uuid())
+  userId    String      @map("user_id")
+  addressId String      @map("address_id")
+  type      AddressType
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime?   @map("deleted_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  address Address @relation(fields: [addressId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, addressId, type])
+  @@map("user_addresses")
+}
+
+model OrganizationAddress {
+  id             String      @id @default(uuid())
+  organizationId String      @map("organization_id")
+  addressId      String      @map("address_id")
+  type           AddressType
+  createdAt      DateTime    @default(now()) @map("created_at")
+  updatedAt      DateTime    @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime?   @map("deleted_at")
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  address      Address      @relation(fields: [addressId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, addressId, type])
+  @@map("organization_addresses")
 }
 
 model Organization {
   id        String    @id @default(uuid())
   ownerId   String    @map("owner_id")
   name      String
-  slug      String
-  domain    String?
+  slug      String    @unique
   logoUrl   String?   @map("logo_url")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
@@ -94,11 +188,63 @@ model Organization {
   invites  Invite[]
   projects Project[]
 
-  owner User @relation(fields: [ownerId], references: [id])
+  owner               User                  @relation(fields: [ownerId], references: [id])
+  OrganizationDetails OrganizationDetails?
+  OrganizationAddress OrganizationAddress[]
 
-  @@unique([name, slug, domain])
-  @@index([name, slug, domain])
   @@map("organizations")
+}
+
+model OrganizationDetails {
+  id                  String             @id @default(uuid())
+  organizationId      String             @unique @map("organization_id")
+  legalName           String             @map("legal_name")
+  tradeName           String?            @map("trade_name")
+  cnpjNumber          String?            @map("cnpj_number")
+  legalNature         LegalNature        @map("legal_nature") // Natureza Jurídica
+  taxRegime           String?            @map("tax_regime")
+  taxCategory         String?            @map("tax_category")
+  registrationStatus  RegistrationStatus @map("registration_status") // Status Cadastro
+  mainActivity        String?            @map("main_activity") // Atividade principal
+  secondaryActivities Json?              @map("secondary_activities") // Atividades secundárias em formato JSON
+  industryType        String             @map("industry_type") // Tipo de indústria
+  description         String?
+  organizationType    OrganizationType   @map("organization_type") // Tipo de organização (Matriz ou Filial)
+  organizationSize    OrganizationSize   @map("organization_size") // Porte da organização
+  numberOfEmployees   Int?               @map("number_of_employees") // Número de empregados
+  foundingDate        DateTime?          @map("founding_date") // Data de fundação
+  website             String?
+  contactInfo         Json?              @map("contact_info") // Informações de contato como telefone, email, etc.
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  stakeholders Stakeholder[] // Associados à organização
+  organization Organization  @relation(fields: [organizationId], references: [id])
+
+  @@index([cnpjNumber]) // Busca por CNPJ
+  @@index([legalName])  // Busca por Nome Jurídico
+  @@index([tradeName])  // Busca por Nome Fantasia
+  @@index([organizationType, organizationSize]) // Busca por tipo e porte
+  @@map("organization_details")
+}
+
+model Stakeholder {
+  id                    String          @id @default(uuid())
+  organizationDetailsId String          @map("organization_details_id")
+  name                  String
+  email                 String?
+  stake                 Float // Participação
+  role                  StakeholderRole // Posição: Proprietário ou Sócio
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  organizationDetails OrganizationDetails @relation(fields: [organizationDetailsId], references: [id])
+
+  
+  @@index([organizationDetailsId]) // Busca rápida por organização
+  @@map("stakeholders")
 }
 
 model Member {
@@ -126,7 +272,7 @@ model Invite {
   expires        DateTime
   createdAt      DateTime @default(now()) @map("created_at")
 
-  author User? @relation(fields: [authorId], references: [id])
+  author User @relation(fields: [authorId], references: [id])
 
   organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
@@ -147,5 +293,7 @@ model Project {
   owner        User         @relation(fields: [ownerId], references: [id])
   organization Organization @relation(fields: [organizationId], references: [id])
 
+  @@index([ownerId, organizationId])
+  @@unique([name, organizationId])
   @@map("projects")
 }

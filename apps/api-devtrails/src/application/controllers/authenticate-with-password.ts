@@ -27,8 +27,6 @@ export async function authenticateWithCredentialsController(
     const { token, refreshToken } =
       await authenticateCredentialsUseCase.execute(email, password)
 
-    console.log('token', token)
-
     return reply
       .setCookie('refreshToken', refreshToken, {
         path: '/',

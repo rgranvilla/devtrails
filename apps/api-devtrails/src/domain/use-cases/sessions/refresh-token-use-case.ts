@@ -1,4 +1,5 @@
 import { env } from '@devtrails/env'
+import dayjs from 'dayjs'
 import type { FastifyReply } from 'fastify'
 
 import type { ISessionsRepository } from '@/infra/repositories/ISessionsRepository'
@@ -28,7 +29,7 @@ export class RefreshTokenUseCase {
     refreshToken: string,
     userId: string,
   ): Promise<IRefreshTokenResponse> {
-    console.log('[INITIALE REFRESH USE CASE]')
+    console.info('[INITIALE REFRESH USE CASE]')
     const session =
       await this.sessionsRepository.findByRefreshToken(refreshToken)
 
@@ -40,19 +41,36 @@ export class RefreshTokenUseCase {
       throw new ForbiddenError()
     }
 
-    const newToken = await this.reply.jwtSign(
-      {
-        sub: userId,
-      },
-      {
-        expiresIn: `${env.JWT_EXPIRES_IN_SECONDS}s`,
-      },
+    const newDate = dayjs().toDate()
+    const expiresDateIsAfter = dayjs(newDate).isAfter(
+      dayjs(session.expiresDate),
     )
 
-    await this.sessionsRepository.refreshToken(refreshToken, newToken)
+    console.info('[CHECKING EXPIRATION DATE]', expiresDateIsAfter)
 
-    return {
-      token: newToken,
+    if (expiresDateIsAfter && session.refreshToken === refreshToken) {
+      console.info('[TOKEN EXPIRED - REFRESHING]')
+      const newToken = await this.reply.jwtSign(
+        {
+          sub: userId,
+        },
+        {
+          expiresIn: `${env.JWT_EXPIRES_IN_SECONDS}s`,
+        },
+      )
+      await this.sessionsRepository.refreshToken(refreshToken, newToken)
+
+      return {
+        token: newToken,
+      }
     }
+
+    if (!expiresDateIsAfter && session.refreshToken === refreshToken) {
+      console.info('[TOKEN NOT EXPIRED]')
+      return {
+        token: session.token,
+      }
+    }
+    throw new ForbiddenError('Invalid token')
   }
 }
